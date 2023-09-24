@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+        Phonebook phonebook = new Phonebook();
         Scanner s1 = new Scanner(System.in);
         System.out.println("Welcome to the linked Tree Phonebook!");
         int option = 0;
@@ -15,7 +16,7 @@ public class Main {
             System.out.println("7.Print all events alphabetically");
             System.out.println("8.Exit");
             System.out.println();
-            System.out.print("Enter your choice:");
+            System.out.print("Enter your choice: ");
             option = s1.nextInt();
 
             switch (option){
