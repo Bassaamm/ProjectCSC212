@@ -1,15 +1,16 @@
-public class Phonebook {
+public class Phonebook<T> {
     LinkedList<Contact> contact;
     public Phonebook(){
     LinkedList<Contact> contact = new LinkedList<Contact>();
     }
-    public boolean add(String name ,int number , String email,String address, String birthday, String notes ){
-        Contact con = new Contact(name ,number,email,address,birthday,notes);
-
-        contact.insert(con);
+    public boolean add(Contact e ){
+        contact.insert(e);
         return true;
     }
-    public boolean search(String name){
+    public boolean search(T check){
+        Contact head = contact.retrieve();
+
+
 
         return false;
     }

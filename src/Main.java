@@ -40,7 +40,7 @@ public class Main {
                     String note = s1.next();
 
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
-
+                    phonebook.add(newContact);
                 }
                 case 2 -> System.out.println("Case 2");
                 case 3 -> System.out.println("Case 3");
