@@ -1,4 +1,4 @@
-public class Conrtact {
+public class Contact {
     private String name;
     private int phoneNumber;
     private String emailAddress;
@@ -6,7 +6,7 @@ public class Conrtact {
     private String birthday;
     private String notes;
 
-    public Conrtact(String name, int phoneNumber, String emailAddress, String address, String birthday, String notes) {
+    public Contact(String name, int phoneNumber, String emailAddress, String address, String birthday, String notes) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
