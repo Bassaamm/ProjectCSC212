@@ -27,7 +27,7 @@ public class Main {
                     String name = scanner.next();
 
                     System.out.print("Enter the contact's phone number: ");
-                    int phoneNumber = scanner.nextInt();
+                    String phoneNumber = scanner.next();
 
                     System.out.print("Enter the contact's email address: ");
                     String email = scanner.next();
@@ -62,8 +62,16 @@ public class Main {
                             String name = scanner.next();
                             phonebook.search(option, name);
                         }
-                        case 2 -> System.out.println("2");
-                        case 3 -> System.out.println("3");
+                        case 2 -> {
+                            System.out.print("Enter the number: ");
+                            String phoneNumber = scanner.next();
+                            phonebook.search(option,phoneNumber);
+                        }
+                        case 3 ->  {
+                            System.out.print("Enter the email: ");
+                            String email = scanner.next();
+                            phonebook.searchMany(option,email);
+                        }
                         case 4 -> System.out.println("4");
                         case 5 -> System.out.println("5");
                         default -> System.out.println("Invalid input");
@@ -71,7 +79,11 @@ public class Main {
 
                     System.out.println();
                 }
-                case 3 -> System.out.println("Case 3");
+                case 3 ->{
+                    System.out.print("Enter the phonenumber: ");
+                    String phoneNumber = scanner.next();
+                    phonebook.remove(phoneNumber);
+                }
                 case 4 -> {
                     System.out.print("Enter event title: ");
                     String title = scanner.next();
@@ -103,18 +115,15 @@ public class Main {
                 }
                 //Testing stuff
                 case 6 -> {
-                    Contact newContact = new Contact("fahad", 055, "email", "address", "birthday", "note");
-                    phonebook.add(newContact);
                     phonebook.printContacts();
-
                 }
                 //Testing stuff
                 case 7 -> {
-                    Contact newContact = new Contact("fahad", 055, "email", "address", "birthday", "note");
+                    Contact newContact = new Contact("fahad", "055", "email", "address", "birthday", "note");
                     phonebook.add(newContact);
-                    Contact newContact3 = new Contact("khalid", 056, "email2", "address2", "birthday2", "note2");
-                    phonebook.add(newContact);
-                    Contact newContact2 = new Contact("abdullah", 056, "email2", "address2", "birthday2", "note2");
+                    Contact newContact3 = new Contact("khalid", "056", "email2", "address2", "birthday2", "note2");
+                    phonebook.add(newContact3);
+                    Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
                     phonebook.add(newContact2);
                     phonebook.printContacts();
 

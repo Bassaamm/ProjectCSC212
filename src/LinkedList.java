@@ -21,7 +21,8 @@ public class LinkedList<T> {
         int counter = 0;
         while (temp != null) {
             temp = temp.next;
-            counter++;}
+            counter++;
+        }
         return counter;
     }
 

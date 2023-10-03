@@ -12,6 +12,7 @@ public class Phonebook<T>{
         while(!(contact.last()) && (contact.retrieve().getName().toLowerCase().compareTo(e.getName().toLowerCase()) >= 0)){
             contact.findNext();
         }
+        printCurrentContact(e);
         contact.insert(e);
 
     }
@@ -26,17 +27,20 @@ public class Phonebook<T>{
             if (head.getName().equalsIgnoreCase((String) value)){
                 System.out.println(value);
                     printCurrentContact(head);
+
                     return true;
                 }
             else {
                 contact.findNext();
+                head = contact.retrieve();
             };
             if(num == 2)
-                if ((Integer)head.getPhoneNumber() == value ){
+                if (head.getPhoneNumber().equalsIgnoreCase((String) value)){
                     printCurrentContact(head);
                     return true;
                 } else {
                     contact.findNext();
+                    head = contact.retrieve();
                 };
 
         }
@@ -46,34 +50,56 @@ public class Phonebook<T>{
         if (contact.empty())
             return false;
         contact.findFirst();
+        int length = contact.getLength();
         Contact head = contact.retrieve();
-        for (int i = 0; i < contact.getLength(); i++) {
+        for (int i = 0; i < length ; i++) {
             if (num == 3)
                 if (head.getEmailAddress().equalsIgnoreCase((String) value)) {
                     printCurrentContact(head);
-                    return true;
-                }
+                    if (i == length - 1)
+                        return true;
+                    contact.findNext();
+                    head = contact.retrieve();
+                }else {
+                    contact.findNext();
+                    head = contact.retrieve();
+                };
             if (num == 4)
                 if (head.getAddress().equalsIgnoreCase((String) value)) {
                     printCurrentContact(head);
-                    return true;
-                }
+                    if (i == length - 1)
+                        return true;
+                    contact.findNext();
+                    head = contact.retrieve();
+                }else {
+                    contact.findNext();
+                    head = contact.retrieve();
+                };
             if (num == 5)
                 if (head.getBirthday().equalsIgnoreCase((String) value)) {
                     printCurrentContact(head);
-                    return true;
-                }
+                    if (i == length - 1)
+                        return true;
+                    contact.findNext();
+                    head = contact.retrieve();
+                }else {
+                    contact.findNext();
+                    head = contact.retrieve();
+                };
         }
-        return false;
+        return true;
     }
-    public boolean remove(Contact e){
-
-        return false;
+    public boolean remove(T number){
+           boolean temp = search(2 ,number);
+           contact.remove();
+        return true;
     }
 
     public void printContacts(){
-        if(contact.empty())
+        if(contact.empty()) {
+            System.out.println("The PhoneBook is empty");
             return;
+        }
         contact.findFirst();
         while(!contact.last()){
             printData();
