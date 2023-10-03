@@ -95,11 +95,23 @@ public class Main {
                     }
                     System.out.println();
                 }
-                case 6 -> System.out.println("6- Print contacts by first name");
-                case 7 -> System.out.println("7- Print all events alphabetically");
+                //Testing stuff
+                case 6 -> {
+                    Contact newContact = new Contact("fahad", 055, "email", "address", "birthday", "note");
+                    phonebook.add(newContact);
+                }
+                //Testing stuff
+                case 7 -> {
+                    Contact newContact = new Contact("khalid", 056, "email2", "address2", "birthday2", "note2");
+                    phonebook.add(newContact);
+                    Contact newContact2 = new Contact("abdullah", 056, "email2", "address2", "birthday2", "note2");
+                    phonebook.add(newContact2);
+                }
             }
         }while(mainSwitch != 8);
         System.out.println();
         System.out.println("Goodbye!");
+        phonebook.printContacts();
+
     }
 }

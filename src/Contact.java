@@ -1,4 +1,4 @@
-public class Contact {
+public class Contact implements Comparable<Contact>{
     private String name;
     private int phoneNumber;
     private String emailAddress;
@@ -62,4 +62,11 @@ public class Contact {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+
+    public int compareTo(Contact contact) {
+        //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
+        return this.name.compareTo(contact.name);
+    }
+
 }
