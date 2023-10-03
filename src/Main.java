@@ -56,7 +56,12 @@ public class Main {
                     System.out.print("Enter your choice: ");
                     int option = scanner.nextInt();
                     switch (option){
-                        case 1 -> System.out.println("1");
+
+                        case 1 -> {
+                            System.out.print("Enter the name: ");
+                            String name = scanner.next();
+                            phonebook.search(option, name);
+                        }
                         case 2 -> System.out.println("2");
                         case 3 -> System.out.println("3");
                         case 4 -> System.out.println("4");
@@ -100,13 +105,19 @@ public class Main {
                 case 6 -> {
                     Contact newContact = new Contact("fahad", 055, "email", "address", "birthday", "note");
                     phonebook.add(newContact);
+                    phonebook.printContacts();
+
                 }
                 //Testing stuff
                 case 7 -> {
-                    Contact newContact = new Contact("khalid", 056, "email2", "address2", "birthday2", "note2");
+                    Contact newContact = new Contact("fahad", 055, "email", "address", "birthday", "note");
+                    phonebook.add(newContact);
+                    Contact newContact3 = new Contact("khalid", 056, "email2", "address2", "birthday2", "note2");
                     phonebook.add(newContact);
                     Contact newContact2 = new Contact("abdullah", 056, "email2", "address2", "birthday2", "note2");
                     phonebook.add(newContact2);
+                    phonebook.printContacts();
+
                 }
             }
         }while(mainSwitch != 8);
