@@ -1,3 +1,4 @@
+
 public class LinkedList<T> {
 
     private Node<T> head;
@@ -27,6 +28,7 @@ public class LinkedList<T> {
     }
 
     public void findNext() {
+
         current = current.next;
     }
 
@@ -44,6 +46,7 @@ public class LinkedList<T> {
     public void insert(T value){
         Node<T> temp;
         if (head == null)
+
             current = head = new Node<T>(value);
         else {
             temp = current.next;
@@ -62,6 +65,7 @@ public class LinkedList<T> {
 
         }
     }
+
     public void remove(){
         if (current == head)
             head = head.next;
@@ -77,6 +81,5 @@ public class LinkedList<T> {
             current = current.next;
 
     }
-
 
 }

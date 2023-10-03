@@ -5,6 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int mainSwitch;
         System.out.println("Welcome to the linked Tree Phonebook!");
+
         do{
             System.out.println("Please choose an option:");
             System.out.println("1.Add a contact");

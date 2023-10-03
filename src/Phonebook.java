@@ -16,6 +16,7 @@ public class Phonebook<T>{
 
     }
     public boolean search(T check) {
+
         Contact head = contact.retrieve();
 
 
@@ -47,4 +48,5 @@ public class Phonebook<T>{
         System.out.println("Birthday: " + contact.retrieve().getBirthday());
         System.out.println("Notes: " + contact.retrieve().getNotes());
     }
+
 }
