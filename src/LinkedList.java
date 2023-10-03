@@ -15,23 +15,20 @@ public class LinkedList<T> {
             temp = temp.next;
         }
     }
-    public boolean empty () {
+    public boolean empty() {
         return head == null;
     }
 
-    public boolean last () {
+    public boolean last() {
         return current.next == null;
     }
 
-    public boolean full () {
-        return false;
-    }
-
-    public void findfirst () {
+    public void findFirst() {
         current = head;
     }
 
-    public void findnext () {
+    public void findNext() {
+
         current = current.next;
     }
 
@@ -48,7 +45,8 @@ public class LinkedList<T> {
 
     public void insert(T value){
         Node<T> temp;
-        if (empty())
+        if (head == null)
+
             current = head = new Node<T>(value);
         else {
             temp = current.next;
@@ -57,6 +55,17 @@ public class LinkedList<T> {
             current.next = temp;
         }
     }
+
+    public void insertBefore(T value){
+        Node<T> temp;
+        if (head == null){
+            current = head = new Node<T>(value);
+        }
+        else{
+
+        }
+    }
+
     public void remove(){
         if (current == head)
             head = head.next;
@@ -72,4 +81,5 @@ public class LinkedList<T> {
             current = current.next;
 
     }
+
 }

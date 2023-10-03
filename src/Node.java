@@ -1,13 +1,13 @@
 class Node<T> {
-    T data;
-    Node<T> next;
+    public T data;
+    public Node<T> next;
 
-    Node(){
+    public Node(){
         data = null;
         next = null;
     }
-    Node(T value){
-        this.data = value;
+    public Node(T value){
+        data = value;
         next = null;
     }
 
