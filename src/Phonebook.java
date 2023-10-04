@@ -10,7 +10,7 @@ public class Phonebook<T>{
         }
         contact.findFirst();
         while(!contact.last()){
-            if(contact.retrieve().getName().compareTo(newCon.getName()) >= 0)
+            if(contact.retrieve().getName().compareTo(e.getName()) >= 0)
                 break;
             contact.findNext();
         }
