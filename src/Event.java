@@ -3,16 +3,14 @@ public class Event {
     private int data;
     private int time ;
     private String location;
-    private Contact contact[];
-    private int nContact;
+   
 
-    public Event(String title, int date, int time,String location,int size){
+    public Event(String title, int date, int time,String location){
         this.title=title;
         this.data=date;
         this.time=time;
         this.location=location;
-        contact= new Contact[size];
-        nContact=0;
+        
     }
 
 
