@@ -3,18 +3,22 @@ public class Phonebook<T>{
     public Phonebook() {
         contact = new LinkedList<Contact>();
     }
-    public void add(Contact e) {
-        if(contact.empty()) {
+    public void sortedAdd(Contact e){
+        if(contact.empty()){
             contact.insert(e);
             return;
         }
         contact.findFirst();
-        while(!(contact.last()) && (contact.retrieve().getName().toLowerCase().compareTo(e.getName().toLowerCase()) >= 0)){
+        while(!contact.last()){
+            if(contact.retrieve().getName().compareTo(newCon.getName()) >= 0)
+                break;
             contact.findNext();
         }
-        printCurrentContact(e);
-        contact.insert(e);
-
+        if(contact.retrieve().getName().compareTo(e.getName()) <= 0) {
+            contact.insert(e);
+            return;
+        }
+        contact.insertBefore(e, contact.retrieve());
     }
     public boolean search(int num,T value) {
     if (contact.empty())
