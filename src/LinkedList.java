@@ -15,6 +15,17 @@ public class LinkedList<T> {
             temp = temp.next;
         }
     }
+
+    public int getLength(){
+        Node<T> temp = head;
+        int counter = 0;
+        while (temp != null) {
+            temp = temp.next;
+            counter++;
+        }
+        return counter;
+    }
+
     public boolean empty() {
         return head == null;
     }
@@ -56,15 +67,7 @@ public class LinkedList<T> {
         }
     }
 
-    public void insertBefore(T value){
-        Node<T> temp;
-        if (head == null){
-            current = head = new Node<T>(value);
-        }
-        else{
 
-        }
-    }
 
     public void remove(){
         if (current == head)
