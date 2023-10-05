@@ -10,7 +10,7 @@ public class Phonebook<T>{
         }
         contact.findFirst();
         while(!contact.last()){
-            if(contact.retrieve().getName().compareTo(newCon.getName()) >= 0)
+            if(contact.retrieve().getName().compareTo(e.getName()) >= 0)
                 break;
             contact.findNext();
         }
@@ -20,86 +20,65 @@ public class Phonebook<T>{
         }
         contact.insertBefore(e, contact.retrieve());
     }
-    public boolean search(int num,T value) {
-    if (contact.empty())
-        return false;
-        contact.findFirst();
-        int length = contact.getLength();
-    Contact head = contact.retrieve();
-        for(int i = 0; i < length ; i++) {
-            if(num == 1)
-            if (head.getName().equalsIgnoreCase((String) value)){
-                System.out.println(value);
-                    printCurrentContact(head);
 
-                    return true;
-                }
-            else {
-                contact.findNext();
-                head = contact.retrieve();
-            };
-            if(num == 2)
-                if (head.getPhoneNumber().equalsIgnoreCase((String) value)){
-                    printCurrentContact(head);
-                    return true;
-                } else {
-                    contact.findNext();
-                    head = contact.retrieve();
-                };
-
-        }
-    return false;
-    }
-    public boolean searchMany(int num,T value) {
+    public  boolean search(int num, T value) {
+        int counter = 0;
         if (contact.empty())
             return false;
         contact.findFirst();
-        int length = contact.getLength();
-        Contact head = contact.retrieve();
-        for (int i = 0; i < length ; i++) {
-            if (num == 3)
-                if (head.getEmailAddress().equalsIgnoreCase((String) value)) {
-                    printCurrentContact(head);
-                    if (i == length - 1)
+        while (true) {
+            switch (num) {
+                case 1 -> {
+                    if (contact.retrieve().getName().equalsIgnoreCase((String) value)) {
+                        printData();
+                        System.out.println();
                         return true;
-                    contact.findNext();
-                    head = contact.retrieve();
-                }else {
-                    contact.findNext();
-                    head = contact.retrieve();
-                };
-            if (num == 4)
-                if (head.getAddress().equalsIgnoreCase((String) value)) {
-                    printCurrentContact(head);
-                    if (i == length - 1)
+                    }
+                }
+                case 2 -> {
+                    if (contact.retrieve().getPhoneNumber().equalsIgnoreCase((String) value)) {
+                        printData();
+                        System.out.println();
                         return true;
-                    contact.findNext();
-                    head = contact.retrieve();
-                }else {
-                    contact.findNext();
-                    head = contact.retrieve();
-                };
-            if (num == 5)
-                if (head.getBirthday().equalsIgnoreCase((String) value)) {
-                    printCurrentContact(head);
-                    if (i == length - 1)
-                        return true;
-                    contact.findNext();
-                    head = contact.retrieve();
-                }else {
-                    contact.findNext();
-                    head = contact.retrieve();
-                };
+                    }
+                }
+                case 3 -> {
+                    if (contact.retrieve().getEmailAddress().equalsIgnoreCase((String) value)){
+                        counter += 1;
+                        printData();
+                        System.out.println();
+                    }
+                }
+                case 4 -> {
+                    if (contact.retrieve().getAddress().equalsIgnoreCase((String) value)){
+                        counter += 1;
+                        printData();
+                        System.out.println();
+                    }
+                }
+                case 5 -> {
+                    if (contact.retrieve().getBirthday().equalsIgnoreCase((String) value)){
+                        counter += 1;
+                        printData();
+                        System.out.println();
+
+                    }
+                }
+            }
+            if(contact.last())
+                break;
+            contact.findNext();
         }
-        return true;
+        return !(counter == 0);
     }
+
     public boolean remove(T number){
            boolean temp = search(2 ,number);
            contact.remove();
         return true;
     }
 
-    public void printContacts(){
+    public void printAllContacts(){
         if(contact.empty()) {
             System.out.println("The PhoneBook is empty");
             return;
@@ -121,13 +100,4 @@ public class Phonebook<T>{
         System.out.println("Birthday: " + contact.retrieve().getBirthday());
         System.out.println("Notes: " + contact.retrieve().getNotes());
     }
-    private void printCurrentContact(Contact current){
-        System.out.println("Name: " + current.getName());
-        System.out.println("Phone Number: " + current.getPhoneNumber());
-        System.out.println("Email Address: " + current.getEmailAddress());
-        System.out.println("Address: " + current.getAddress());
-        System.out.println("Birthday: " + current.getBirthday());
-        System.out.println("Notes: " + current.getNotes());
-    }
-
 }

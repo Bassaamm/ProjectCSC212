@@ -60,20 +60,33 @@ public class Main {
                         case 1 -> {
                             System.out.print("Enter the name: ");
                             String name = scanner.next();
+                            System.out.println();
                             phonebook.search(option, name);
                         }
                         case 2 -> {
                             System.out.print("Enter the number: ");
                             String phoneNumber = scanner.next();
+                            System.out.println();
                             phonebook.search(option,phoneNumber);
                         }
                         case 3 ->  {
                             System.out.print("Enter the email: ");
                             String email = scanner.next();
-                            phonebook.searchMany(option,email);
+                            System.out.println();
+                            phonebook.search(option,email);
                         }
-                        case 4 -> System.out.println("4");
-                        case 5 -> System.out.println("5");
+                        case 4 -> {
+                            System.out.println("Enter the Address: ");
+                            String address = scanner.next();
+                            System.out.println();
+                            phonebook.search(option,address);
+                        }
+                        case 5 -> {
+                            System.out.println("Enter the Birthday: ");
+                            String birthday = scanner.next();
+                            System.out.println();
+                            phonebook.search(option,birthday);
+                        }
                         default -> System.out.println("Invalid input");
                     }
 
@@ -115,24 +128,24 @@ public class Main {
                 }
                 //Testing stuff
                 case 6 -> {
-                    phonebook.printContacts();
+                    phonebook.printAllContacts();
                 }
                 //Testing stuff
                 case 7 -> {
                     Contact newContact = new Contact("fahad", "055", "email", "address", "birthday", "note");
-                    phonebook.add(newContact);
+                    phonebook.sortedAdd(newContact);
                     Contact newContact3 = new Contact("khalid", "056", "email2", "address2", "birthday2", "note2");
-                    phonebook.add(newContact3);
+                    phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
-                    phonebook.add(newContact2);
-                    phonebook.printContacts();
+                    phonebook.sortedAdd(newContact2);
+                    phonebook.printAllContacts();
 
                 }
             }
         }while(mainSwitch != 8);
         System.out.println();
         System.out.println("Goodbye!");
-        phonebook.printContacts();
+        phonebook.printAllContacts();
 
     }
 }
