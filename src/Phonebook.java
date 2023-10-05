@@ -99,5 +99,43 @@ public class Phonebook<T>{
         System.out.println("Birthday: " + current.getBirthday());
         System.out.println("Notes: " + current.getNotes());
     }
+    public void searchEvent(int num, T value) {
+
+        if (num == 1) {
+            int lengthC = contact.getLength();
+            Contact currentC = contact.retrieve();
+            for (int i = 0; i < lengthC; i++) {
+                if (currentC.getName().equalsIgnoreCase((String) value))
+                    printCurrentEvent(currentC.event.retrieve());
+
+                else {
+                    contact.findNext();
+                    currentC = contact.retrieve();
+                }
+            }
+        }
+        if (num == 2) {
+            int lengthE=contact.retrieve().event.getLength();
+            Event currentE = contact.retrieve().event.retrieve();
+            for (int j = 0; j < lengthE; j++) {
+                if (currentE.getTitle().equalsIgnoreCase((String) value))
+                    printCurrentEvent(currentE);
+                else {
+                    contact.retrieve().event.findNext();
+                    currentE = contact.retrieve().event.retrieve();
+                }
+            }
+        }
+
+
+    }
+    private void printCurrentEvent(Event current) {
+        System.out.println("Title: " + current.getTitle());
+        System.out.println("Time: " + current.getTime());
+        System.out.println("Date: " + current.getDate());
+        System.out.println("Location: " + current.getLocation());
+
+
+    }
 
 }
