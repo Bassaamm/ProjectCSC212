@@ -5,17 +5,17 @@ public class Contact implements Comparable<Contact>{
     private String address;
     private String birthday;
     private String notes;
-    private Event event[];
-    private int nEvent;
+    public LinkedList<Event>event;
 
-    public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday, String notes,int size) {
+    public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday, String notes) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
-        event=new Event[size];
+        event=new LinkedList<Event>();
+
 
     }
 
