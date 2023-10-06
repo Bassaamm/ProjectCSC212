@@ -7,15 +7,6 @@ public class LinkedList<T> {
     public LinkedList(){
         head = current = null;
     }
-
-    public void printList(){
-        Node<T> temp = head;
-        while(temp != null){
-            System.out.println(temp.data);
-            temp = temp.next;
-        }
-    }
-
     public int getLength(){
         Node<T> temp = head;
         int counter = 0;

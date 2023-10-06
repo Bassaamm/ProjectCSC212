@@ -1,4 +1,4 @@
-public class Phonebook<T>{
+public class Phonebook{
     LinkedList<Contact> contact;
     public Phonebook() {
         contact = new LinkedList<Contact>();
@@ -21,42 +21,43 @@ public class Phonebook<T>{
         contact.insertBefore(e, contact.retrieve());
     }
 
-    public  boolean search(int num, T value) {
+    public <T> boolean search(String criteria, T value) {
         int counter = 0;
-        if (contact.empty())
+        if (contact.empty()) {
             return false;
+        }
         contact.findFirst();
         while (true) {
-            switch (num) {
-                case 1 -> {
+            switch (criteria) {
+                case "name" -> {
                     if (contact.retrieve().getName().equalsIgnoreCase((String) value)) {
                         printData();
                         System.out.println();
                         return true;
                     }
                 }
-                case 2 -> {
+                case "phoneNumber" -> {
                     if (contact.retrieve().getPhoneNumber().equalsIgnoreCase((String) value)) {
                         printData();
                         System.out.println();
                         return true;
                     }
                 }
-                case 3 -> {
+                case "email" -> {
                     if (contact.retrieve().getEmailAddress().equalsIgnoreCase((String) value)){
                         counter += 1;
                         printData();
                         System.out.println();
                     }
                 }
-                case 4 -> {
+                case "address" -> {
                     if (contact.retrieve().getAddress().equalsIgnoreCase((String) value)){
                         counter += 1;
                         printData();
                         System.out.println();
                     }
                 }
-                case 5 -> {
+                case "birthday" -> {
                     if (contact.retrieve().getBirthday().equalsIgnoreCase((String) value)){
                         counter += 1;
                         printData();
@@ -72,8 +73,8 @@ public class Phonebook<T>{
         return !(counter == 0);
     }
 
-    public boolean remove(T number){
-           boolean temp = search(2 ,number);
+    public <T> boolean remove(T number){
+           boolean temp = search("phoneNumber" ,number);
            contact.remove();
         return true;
     }
@@ -87,17 +88,18 @@ public class Phonebook<T>{
         while(!contact.last()){
             printData();
             contact.findNext();
-            System.out.println();
         }
         printData();
         System.out.println();
     }
     private void printData(){
+        System.out.println("==============================");
         System.out.println("Name: " + contact.retrieve().getName());
         System.out.println("Phone Number: " + contact.retrieve().getPhoneNumber());
         System.out.println("Email Address: " + contact.retrieve().getEmailAddress());
         System.out.println("Address: " + contact.retrieve().getAddress());
         System.out.println("Birthday: " + contact.retrieve().getBirthday());
         System.out.println("Notes: " + contact.retrieve().getNotes());
+        System.out.println("==============================");
     }
 }

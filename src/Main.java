@@ -26,8 +26,22 @@ public class Main {
                     System.out.print("Enter the contact's name: ");
                     String name = scanner.next();
 
+                    //duplicate name checker
+                    if(phonebook.search("name", name)){
+                        System.out.println("A contact with the same name already exists");
+                        System.out.println();
+                        break;
+                    }
+
                     System.out.print("Enter the contact's phone number: ");
                     String phoneNumber = scanner.next();
+
+                    //duplicate number checker
+                    if(phonebook.search("phoneNumber", phoneNumber)){
+                        System.out.println("A contact with the same phone number already exists");
+                        System.out.println();
+                        break;
+                    }
 
                     System.out.print("Enter the contact's email address: ");
                     String email = scanner.next();
@@ -41,8 +55,9 @@ public class Main {
                     System.out.print("Enter any notes contact: ");
                     String note = scanner.next();
 
-                    //add duplicate checker before insertion to phonebook
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
+                    phonebook.sortedAdd(newContact);
+                    System.out.println();
                 }
 
                 case 2 -> {
@@ -61,31 +76,31 @@ public class Main {
                             System.out.print("Enter the name: ");
                             String name = scanner.next();
                             System.out.println();
-                            phonebook.search(option, name);
+                            phonebook.search("name", name);
                         }
                         case 2 -> {
                             System.out.print("Enter the number: ");
                             String phoneNumber = scanner.next();
                             System.out.println();
-                            phonebook.search(option,phoneNumber);
+                            phonebook.search("phoneNumber", phoneNumber);
                         }
                         case 3 ->  {
                             System.out.print("Enter the email: ");
                             String email = scanner.next();
                             System.out.println();
-                            phonebook.search(option,email);
+                            phonebook.search("email", email);
                         }
                         case 4 -> {
                             System.out.println("Enter the Address: ");
                             String address = scanner.next();
                             System.out.println();
-                            phonebook.search(option,address);
+                            phonebook.search("address", address);
                         }
                         case 5 -> {
                             System.out.println("Enter the Birthday: ");
                             String birthday = scanner.next();
                             System.out.println();
-                            phonebook.search(option,birthday);
+                            phonebook.search("birthday", birthday);
                         }
                         default -> System.out.println("Invalid input");
                     }
