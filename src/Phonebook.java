@@ -1,7 +1,10 @@
 public class Phonebook<T>{
     LinkedList<Contact> contact;
+     LinkedList<Event> event;
     public Phonebook() {
         contact = new LinkedList<Contact>();
+        event= new LinkedList<Event>();
+        
     }
     public void add(Contact e) {
         if(contact.empty()) {
@@ -91,6 +94,13 @@ public class Phonebook<T>{
         System.out.println("Birthday: " + contact.retrieve().getBirthday());
         System.out.println("Notes: " + contact.retrieve().getNotes());
     }
+    private void printeventData() {
+        System.out.println("title: " + event.retrieve().getTitle());
+        System.out.println("event date: " + event.retrieve().getDate());
+        System.out.println("event time: " + event.retrieve().getTime());
+        System.out.println("location: " + event.retrieve().getLocation());
+
+    }
     private void printCurrentContact(Contact current){
         System.out.println("Name: " + current.getName());
         System.out.println("Phone Number: " + current.getPhoneNumber());
@@ -136,6 +146,37 @@ public class Phonebook<T>{
         System.out.println("Location: " + current.getLocation());
 
 
+    }
+    public void sortedAddEvent(Event e) {
+        if (event.empty()) {
+            event.insert(e);
+            return;
+        }
+        event.findFirst();
+        while (!event.last()) {
+            if (event.retrieve().getTitle().compareTo(e.getTitle()) >= 0)
+                break;
+            event.findNext();
+        }
+        if (event.retrieve().getTitle().compareTo(e.getTitle()) <= 0) {
+            event.insert(e);
+            return;
+        }
+        event.insertBefore(e, event.retrieve());
+    }
+     public void printevent() {
+        if (event.empty()) {
+            System.out.println("The PhoneBook is empty");
+            return;
+        }
+        event.findFirst();
+        while (!event.last()) {
+            printeventData();
+            event.findNext();
+            System.out.println();
+        }
+        printeventData();
+        System.out.println();
     }
 
 }
