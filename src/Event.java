@@ -1,4 +1,4 @@
-public class Event {
+public class Event implements Comparable<Event>{
   private String  title;
     private int data;
     private int time ;
@@ -46,4 +46,9 @@ public class Event {
     public int getData() {
         return data;
     }
+  public int compareTo(Event event) {
+        //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
+        return this.title.compareTo(event.title);
+    }
+
 }
