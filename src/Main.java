@@ -117,6 +117,14 @@ public class Main {
                     Contact newContact2 = new Contact("abdullah", 056, "email2", "address2", "birthday2", "note2");
                     phonebook.add(newContact2);
                     phonebook.printContacts();
+                     Event event1=new Event("Reading","2022-2-22","11 PM","Home");
+                    phonebook.sortedAddEvent(event1);
+                    Event evenT2=new Event("Football","2023-3-23","10 PM","in the gym");
+                    phonebook.sortedAddEvent(evenT2);
+                    Event event3=new Event("Study","2023-3-25","7 PM","KSU");
+                    phonebook.sortedAddEvent(event3);
+                    phonebook.printevent();
+
 
                 }
             }
