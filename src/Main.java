@@ -28,8 +28,7 @@ public class Main {
 
                     //duplicate name checker
                     if(phonebook.search("name", name)){
-                        System.out.println("A contact with the same name already exists");
-                        System.out.println();
+                        System.out.println("A contact with the same name already exists \n");
                         break;
                     }
 
@@ -38,8 +37,7 @@ public class Main {
 
                     //duplicate number checker
                     if(phonebook.search("phoneNumber", phoneNumber)){
-                        System.out.println("A contact with the same phone number already exists");
-                        System.out.println();
+                        System.out.println("A contact with the same phone number already exists \n");
                         break;
                     }
 
@@ -60,14 +58,14 @@ public class Main {
                     System.out.println();
                 }
 
+                //Search for a contact
                 case 2 -> {
                     System.out.println("Enter search criteria:");
                     System.out.println("1.Name");
                     System.out.println("2.Phone Number");
                     System.out.println("3.Email Address");
                     System.out.println("4.Address");
-                    System.out.println("5.Birthday");
-                    System.out.println();
+                    System.out.println("5.Birthday \n" );
                     System.out.print("Enter your choice: ");
                     int option = scanner.nextInt();
                     switch (option){
@@ -104,14 +102,17 @@ public class Main {
                         }
                         default -> System.out.println("Invalid input");
                     }
-
                     System.out.println();
                 }
+
+                // Delete a contact (Incomplete)
                 case 3 ->{
                     System.out.print("Enter the phonenumber: ");
                     String phoneNumber = scanner.next();
                     phonebook.remove(phoneNumber);
                 }
+
+                //Scheduale an event (Incomplete)
                 case 4 -> {
                     System.out.print("Enter event title: ");
                     String title = scanner.next();
@@ -124,11 +125,12 @@ public class Main {
                     System.out.println();
 
                 }
+
+                //
                 case 5 -> {
                     System.out.println("Enter search criteria:");
                     System.out.println("1.Contact name");
-                    System.out.println("2.Event title");
-                    System.out.println();
+                    System.out.println("2.Event title \n");
                     System.out.print("Enter your choice: ");
                     int option = scanner.nextInt();
 
@@ -143,7 +145,7 @@ public class Main {
                 }
                 //Testing stuff
                 case 6 -> {
-                    phonebook.printAllContacts();
+//                    phonebook.printList();
                 }
                 //Testing stuff
                 case 7 -> {
@@ -153,14 +155,16 @@ public class Main {
                     phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
                     phonebook.sortedAdd(newContact2);
-                    phonebook.printAllContacts();
+//                    phonebook.printAllContacts();
 
                 }
+
+                default -> System.out.println("Please enter a valid option");
             }
         }while(mainSwitch != 8);
         System.out.println();
         System.out.println("Goodbye!");
-        phonebook.printAllContacts();
+//        phonebook.printAllContacts();
 
     }
 }

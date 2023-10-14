@@ -19,6 +19,17 @@ public class Contact implements Comparable<Contact>{
 
     }
 
+    @Override
+    public String toString() {
+        return  "name:" + name + '\n' +
+                "phoneNumber:" + phoneNumber + '\n' +
+                "emailAddress:" + emailAddress + '\n' +
+                "address:" + address + '\n' +
+                "birthday:" + birthday + '\n' +
+                "notes:" + notes + '\n' +
+                "event:" + event + '\n';
+    }
+
     public String getName() {
         return name;
     }
