@@ -5,6 +5,7 @@ public class Contact implements Comparable<Contact>{
     private String address;
     private String birthday;
     private String notes;
+    public LinkedList<Event>event;
 
     public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday, String notes) {
         this.name = name;
@@ -13,6 +14,9 @@ public class Contact implements Comparable<Contact>{
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
+        event=new LinkedList<Event>();
+
+
     }
 
     public String getName() {
@@ -70,4 +74,3 @@ public class Contact implements Comparable<Contact>{
     }
 
 }
-

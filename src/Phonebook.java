@@ -1,7 +1,10 @@
 public class Phonebook<T>{
     LinkedList<Contact> contact;
+     LinkedList<Event> event;
     public Phonebook() {
         contact = new LinkedList<Contact>();
+        event= new LinkedList<Event>();
+        
     }
     public void sortedAdd(Contact e){
         if(contact.empty()){
@@ -121,6 +124,13 @@ public class Phonebook<T>{
         System.out.println("Birthday: " + contact.retrieve().getBirthday());
         System.out.println("Notes: " + contact.retrieve().getNotes());
     }
+    private void printeventData() {
+        System.out.println("title: " + event.retrieve().getTitle());
+        System.out.println("event date: " + event.retrieve().getDate());
+        System.out.println("event time: " + event.retrieve().getTime());
+        System.out.println("location: " + event.retrieve().getLocation());
+
+    }
     private void printCurrentContact(Contact current){
         System.out.println("Name: " + current.getName());
         System.out.println("Phone Number: " + current.getPhoneNumber());
@@ -128,6 +138,75 @@ public class Phonebook<T>{
         System.out.println("Address: " + current.getAddress());
         System.out.println("Birthday: " + current.getBirthday());
         System.out.println("Notes: " + current.getNotes());
+    }
+    public void searchEvent(int num, T value) {
+
+        if (num == 1) {
+            int lengthC = contact.getLength();
+            Contact currentC = contact.retrieve();
+            for (int i = 0; i < lengthC; i++) {
+                if (currentC.getName().equalsIgnoreCase((String) value))
+                    printCurrentEvent(currentC.event.retrieve());
+
+                else {
+                    contact.findNext();
+                    currentC = contact.retrieve();
+                }
+            }
+        }
+        if (num == 2) {
+            int lengthE=contact.retrieve().event.getLength();
+            Event currentE = contact.retrieve().event.retrieve();
+            for (int j = 0; j < lengthE; j++) {
+                if (currentE.getTitle().equalsIgnoreCase((String) value))
+                    printCurrentEvent(currentE);
+                else {
+                    contact.retrieve().event.findNext();
+                    currentE = contact.retrieve().event.retrieve();
+                }
+            }
+        }
+
+
+    }
+    private void printCurrentEvent(Event current) {
+        System.out.println("Title: " + current.getTitle());
+        System.out.println("Time: " + current.getTime());
+        System.out.println("Date: " + current.getDate());
+        System.out.println("Location: " + current.getLocation());
+
+
+    }
+    public void sortedAddEvent(Event e) {
+        if (event.empty()) {
+            event.insert(e);
+            return;
+        }
+        event.findFirst();
+        while (!event.last()) {
+            if (event.retrieve().getTitle().compareTo(e.getTitle()) >= 0)
+                break;
+            event.findNext();
+        }
+        if (event.retrieve().getTitle().compareTo(e.getTitle()) <= 0) {
+            event.insert(e);
+            return;
+        }
+        event.insertBefore(e, event.retrieve());
+    }
+     public void printevent() {
+        if (event.empty()) {
+            System.out.println("The PhoneBook is empty");
+            return;
+        }
+        event.findFirst();
+        while (!event.last()) {
+            printeventData();
+            event.findNext();
+            System.out.println();
+        }
+        printeventData();
+        System.out.println();
     }
 
 }
