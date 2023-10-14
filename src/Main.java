@@ -57,6 +57,7 @@ public class Main {
 
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
                     phonebook.sortedAdd(newContact);
+                    phonebook.contact.toString();
                     System.out.println();
                 }
 

@@ -51,5 +51,13 @@ public class Event implements Comparable<Event>{
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.title.compareTo(event.title);
     }
-
+    @Override
+    public String toString() {
+        return "Even {" +
+                "title='" + title + '\'' +
+                ", date=" + date +
+                ", time='" + time + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 }

@@ -3,6 +3,7 @@ public class Phonebook{
     LinkedList<Event> event;
     public Phonebook() {
         contact = new LinkedList<Contact>();
+        event = new LinkedList<Event>();
     }
     public void sortedAdd(Contact e){
         if(contact.empty()){
@@ -94,7 +95,6 @@ public class Phonebook{
         System.out.println();
     }
     private void printData(){
-        System.out.println("==============================");
         System.out.println("Name: " + contact.retrieve().getName());
         System.out.println("Phone Number: " + contact.retrieve().getPhoneNumber());
         System.out.println("Email Address: " + contact.retrieve().getEmailAddress());
