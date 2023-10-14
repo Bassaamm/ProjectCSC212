@@ -2,14 +2,14 @@ import java.util.Date;
 
 public class Event implements Comparable<Event>{
   private String  title;
-    private Date data;
-    private int time ;
+    private Date date;
+    private String time ;
     private String location;
    
 
-    public Event(String title, String date, String time, String location){
+    public Event(String title, Date date, String time, String location){
         this.title=title;
-        this.data=date;
+        this.date=date;
         this.time=time;
         this.location=location;
         
@@ -21,11 +21,11 @@ public class Event implements Comparable<Event>{
         this.title=title;
    }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDate(Date data) {
+        this.date = data;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -41,12 +41,12 @@ public class Event implements Comparable<Event>{
         return location;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDate() {
+        return date;
     }
   public int compareTo(Event event) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
