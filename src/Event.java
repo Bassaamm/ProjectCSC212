@@ -1,16 +1,19 @@
+import java.util.Date;
 public class Event implements Comparable<Event>{
   private String  title;
-    private int data;
-    private int time ;
+    private Date date;
+    private String time ;
     private String location;
-   
+    public LinkedList<Contact>contact;
 
-    public Event(String title, int date, int time,String location){
+
+    public Event(String title, Date date, String time,String location){
         this.title=title;
-        this.data=date;
+        this.date=date;
         this.time=time;
         this.location=location;
-        
+        contact=new LinkedList<Contact>();
+
     }
 
 
@@ -19,11 +22,11 @@ public class Event implements Comparable<Event>{
         this.title=title;
    }
 
-    public void setData(int data) {
-        this.data = data;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -39,16 +42,35 @@ public class Event implements Comparable<Event>{
         return location;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public int getData() {
-        return data;
+    public Date getDate() {
+        return date;
     }
-  public int compareTo(Event event) {
+    public void sortedAdd(Contact e) {
+        if (contact.empty()) {
+            contact.insert(e);
+            return;
+        }
+        contact.findFirst();
+        while (!contact.last()) {
+            if (contact.retrieve().getName().compareTo(e.getName()) >= 0)
+                break;
+            contact.findNext();
+        }
+        if (contact.retrieve().getName().compareTo(e.getName()) <= 0) {
+            contact.insert(e);
+            return;
+        }
+        contact.insertBefore(e, contact.retrieve());
+    }
+
+    public int compareTo(Event event) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.title.compareTo(event.title);
     }
+
 
 }
