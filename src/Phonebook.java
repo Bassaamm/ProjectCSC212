@@ -6,23 +6,31 @@ public class Phonebook<T>{
         event= new LinkedList<Event>();
         
     }
-    public void sortedAdd(Contact e){
-        if(contact.empty()){
+    //check if already exist
+
+    public void sortedAdd(Contact e) {
+        //if empty just insert
+        if (contact.empty()) {
             contact.insert(e);
             return;
         }
+
+        //set current to head
         contact.findFirst();
-        while(!contact.last()){
-            if(contact.retrieve().getName().compareTo(e.getName()) >= 0)
+        //while the name of the contact to be inserted is larger alphabetically than the current in the list
+        while (!contact.last()) {
+            if (contact.retrieve().getName().compareTo(e.getName()) >= 0)
                 break;
             contact.findNext();
         }
-        if(contact.retrieve().getName().compareTo(e.getName()) <= 0) {
+        //to handle if the insert is the first alphabetically in the list and the comparison to the tail
+        if (contact.retrieve().getName().compareTo(e.getName()) < 0) {
             contact.insert(e);
             return;
         }
         contact.insertBefore(e, contact.retrieve());
     }
+
     public boolean search(int num,T value) {
     if (contact.empty())
         return false;
@@ -187,10 +195,11 @@ public class Phonebook<T>{
             if (event.retrieve().getTitle().compareTo(e.getTitle()) >= 0)
                 break;
             event.findNext();
-        }
-        if (event.retrieve().getTitle().compareTo(e.getTitle()) <= 0) {
-            event.insert(e);
-            return;
+            if (event.retrieve().getTitle().compareTo(e.getTitle()) <= 0) {
+                event.insert(e);
+                contact.retrieve().event.insert(e);
+                return;
+            }
         }
         event.insertBefore(e, event.retrieve());
     }
