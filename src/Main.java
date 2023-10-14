@@ -145,7 +145,11 @@ public class Main {
                 }
                 //Testing stuff
                 case 6 -> {
-//                    phonebook.printList();
+                    System.out.print("Enter the first name: ");
+                    String name = scanner.next();
+                    if(!phonebook.search("firstName", name))
+                        System.out.println("Sorry there are no contacts with this name\n");
+
                 }
                 //Testing stuff
                 case 7 -> {
@@ -155,7 +159,6 @@ public class Main {
                     phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
                     phonebook.sortedAdd(newContact2);
-//                    phonebook.printAllContacts();
 
                 }
 
@@ -164,7 +167,6 @@ public class Main {
         }while(mainSwitch != 8);
         System.out.println();
         System.out.println("Goodbye!");
-//        phonebook.printAllContacts();
 
     }
 }

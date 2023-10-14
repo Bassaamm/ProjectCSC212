@@ -98,7 +98,7 @@ public class LinkedList<T> {
     public void printList() {
         Node<T> temp = head;
         while (temp != null) {
-            System.out.println(temp.data);
+            System.out.println(temp.data.toString());
             temp = temp.next;
         }
     }
