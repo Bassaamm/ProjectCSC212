@@ -120,11 +120,11 @@ public class Main {
                 //Testing stuff
                 case 7 -> {
                     Contact newContact = new Contact("fahad", "055", "email", "address", "birthday", "note");
-                    phonebook.add(newContact);
+                    phonebook.sortedAdd(newContact);
                     Contact newContact3 = new Contact("khalid", "056", "email2", "address2", "birthday2", "note2");
-                    phonebook.add(newContact3);
+                    phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
-                    phonebook.add(newContact2);
+                    phonebook.sortedAdd(newContact2);
                     phonebook.printContacts();
 
                 }
