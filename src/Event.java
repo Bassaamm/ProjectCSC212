@@ -1,7 +1,5 @@
 import java.util.Date;
-import java.time.format.DateTimeFormatter;
 public class Event implements Comparable<Event>{
-    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     private String  title;
     private Date date;
     private String time ;
