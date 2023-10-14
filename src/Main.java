@@ -26,8 +26,22 @@ public class Main {
                     System.out.print("Enter the contact's name: ");
                     String name = scanner.next();
 
+                    //duplicate name checker
+                    if(phonebook.search("name", name)){
+                        System.out.println("A contact with the same name already exists");
+                        System.out.println();
+                        break;
+                    }
+
                     System.out.print("Enter the contact's phone number: ");
                     String phoneNumber = scanner.next();
+
+                    //duplicate number checker
+                    if(phonebook.search("phoneNumber", phoneNumber)){
+                        System.out.println("A contact with the same phone number already exists");
+                        System.out.println();
+                        break;
+                    }
 
                     System.out.print("Enter the contact's email address: ");
                     String email = scanner.next();
@@ -41,11 +55,9 @@ public class Main {
                     System.out.print("Enter any notes contact: ");
                     String note = scanner.next();
 
-                    //add duplicate checker before insertion to phonebook
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
                     phonebook.sortedAdd(newContact);
-                    phonebook.printContacts();
-
+                    System.out.println();
                 }
 
                 case 2 -> {
@@ -63,20 +75,33 @@ public class Main {
                         case 1 -> {
                             System.out.print("Enter the name: ");
                             String name = scanner.next();
-                            phonebook.search(option, name);
+                            System.out.println();
+                            phonebook.search("name", name);
                         }
                         case 2 -> {
                             System.out.print("Enter the number: ");
                             String phoneNumber = scanner.next();
-                            phonebook.search(option,phoneNumber);
+                            System.out.println();
+                            phonebook.search("phoneNumber", phoneNumber);
                         }
                         case 3 ->  {
                             System.out.print("Enter the email: ");
                             String email = scanner.next();
-                            phonebook.searchMany(option,email);
+                            System.out.println();
+                            phonebook.search("email", email);
                         }
-                        case 4 -> System.out.println("4");
-                        case 5 -> System.out.println("5");
+                        case 4 -> {
+                            System.out.println("Enter the Address: ");
+                            String address = scanner.next();
+                            System.out.println();
+                            phonebook.search("address", address);
+                        }
+                        case 5 -> {
+                            System.out.println("Enter the Birthday: ");
+                            String birthday = scanner.next();
+                            System.out.println();
+                            phonebook.search("birthday", birthday);
+                        }
                         default -> System.out.println("Invalid input");
                     }
 
@@ -118,7 +143,7 @@ public class Main {
                 }
                 //Testing stuff
                 case 6 -> {
-                    phonebook.printContacts();
+                    phonebook.printAllContacts();
                 }
                 //Testing stuff
                 case 7 -> {
@@ -128,22 +153,14 @@ public class Main {
                     phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
                     phonebook.sortedAdd(newContact2);
-                    phonebook.printContacts();
-//                     Event event1=new Event("Reading","2022-2-22 20:00:00","11 PM","Home");
-//                    phonebook.sortedAddEvent(event1);
-//                    Event evenT2=new Event("Football","2023-3-23","10 PM","in the gym");
-//                    phonebook.sortedAddEvent(evenT2);
-//                    Event event3=new Event("Study","2023-3-25","7 PM","KSU");
-//                    phonebook.sortedAddEvent(event3);
-                    phonebook.printevent();
-
+                    phonebook.printAllContacts();
 
                 }
             }
         }while(mainSwitch != 8);
         System.out.println();
         System.out.println("Goodbye!");
-        phonebook.printContacts();
+        phonebook.printAllContacts();
 
     }
 }
