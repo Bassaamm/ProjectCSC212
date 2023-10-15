@@ -37,6 +37,7 @@ public class Phonebook{
             switch (criteria) {
                 case "name" -> {
                     if (contact.retrieve().getName().equalsIgnoreCase(value)) {
+                        System.out.println();
                         System.out.println(contact.retrieve().toString());
                         return true;
                     }
@@ -51,6 +52,7 @@ public class Phonebook{
                     }
                 }
                 case "phoneNumber" -> {
+                    System.out.println();
                     if (contact.retrieve().getPhoneNumber().equalsIgnoreCase((String) value)) {
                         System.out.println(contact.retrieve().toString());
                         return true;
@@ -83,15 +85,20 @@ public class Phonebook{
         return !(counter == 0);
     }
 
-    public Boolean remove(String number){
-        boolean temp = search("phoneNumber" ,number);
-        contact.remove();
-        return true;
+    public void removeContact(String criteria, String value){
+        if(search(criteria, value)){
+            String name = contact.retrieve().getName();
+            contact.remove();
+            System.out.println("Has been successfully removed\n");
+            return;
+        }
+        System.out.println("No contacts removed\n");
+        return;
     }
 
-    public void searchEvent(String name, String value) {
+    public void searchEvent(String criteria, String value) {
 
-        switch (name) {
+        switch (criteria) {
         case "name" -> {
                 int lengthC = contact.retrieve().event.getLength();
                 System.out.println(lengthC);
