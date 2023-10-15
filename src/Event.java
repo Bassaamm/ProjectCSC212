@@ -24,7 +24,6 @@ public class Event implements Comparable<Event>{
         this.time= time ;
         this.location=location;
         this.contect = contact;
-
     }
    public void setTitle(String title){
         this.title=title;

@@ -75,16 +75,17 @@ public class Phonebook{
         return true;
     }
 
-    public void searchEvent(String num, String value) {
-        switch (num) {
-            case "name" ->{
-                int lengthC = contact.getLength();
+    public void searchEvent(String name, String value) {
+
+        switch (name) {
+        case "name" -> {
+                int lengthC = contact.retrieve().event.getLength();
+                System.out.println(lengthC);
                 Contact currentC = contact.retrieve();
                 for (int i = 0; i < lengthC; i++) {
-                    if (currentC.getName().equalsIgnoreCase(value)){
+                    if (currentC.getName().equalsIgnoreCase(value))
                         printCurrentEvent(currentC.event.retrieve());
-                    contact.findNext();
-                }
+
                     else {
                         contact.findNext();
                         currentC = contact.retrieve();
@@ -103,8 +104,8 @@ public class Phonebook{
                     }
                 }
             }
-            default -> System.out.println("Event does not exist");
         }
+
     }
     public void sortedAddEvent(Event e) {
        Boolean con = search("name" , e.getContect().getName());
@@ -133,7 +134,7 @@ public class Phonebook{
         System.out.println("Date: " + current.getDate());
         System.out.println("Time: " + current.getTime());
         System.out.println("Location: " + current.getLocation());
-        System.out.println("Location: " + current.getContect().getName());
+        System.out.println();
 
     }
     private void printContact(){
