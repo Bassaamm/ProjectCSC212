@@ -1,3 +1,4 @@
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -24,10 +25,12 @@ public class Event implements Comparable<Event>{
         this.time= time ;
         this.location=location;
         this.contect = contact;
+
     }
    public void setTitle(String title){
         this.title=title;
    }
+
     public void setContect(Contact contect) {
         this.contect = contect;
     }
@@ -35,6 +38,7 @@ public class Event implements Comparable<Event>{
         this.date = date;
     }
     public void setTime(LocalTime time) {
+
         this.time = time;
     }
     public void setLocation(String location) {
@@ -57,11 +61,14 @@ public class Event implements Comparable<Event>{
     }
     public Contact getContect() {
         return contect;
+
     }
-  public int compareTo(Event event) {
+
+    public int compareTo(Event event) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.title.compareTo(event.title);
     }
+
     @Override
     public String toString() {
         return "Even {" +
@@ -71,4 +78,5 @@ public class Event implements Comparable<Event>{
                 ", location='" + location + '\'' +
                 '}';
     }
+
 }

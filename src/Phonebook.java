@@ -5,12 +5,15 @@ public class Phonebook{
         contact = new LinkedList<Contact>();
         event = new LinkedList<Event>();
     }
+
     public void sortedAdd(Contact e){
         if(contact.empty()){
+
             contact.insert(e);
             return;
         }
         contact.findFirst();
+
         while(!contact.last()){
             if(contact.retrieve().getName().compareTo(e.getName()) > 0)
                 break;
@@ -28,6 +31,7 @@ public class Phonebook{
         if (contact.empty()) {
              return false;
         }
+
         contact.findFirst();
         while (true) {
             switch (criteria) {
@@ -73,6 +77,7 @@ public class Phonebook{
             }
             if(contact.last())
                 break;
+
             contact.findNext();
         }
         return !(counter == 0);
