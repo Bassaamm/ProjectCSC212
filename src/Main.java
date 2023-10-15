@@ -2,7 +2,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args)  {
