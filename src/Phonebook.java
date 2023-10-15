@@ -37,6 +37,15 @@ public class Phonebook{
                         return true;
                     }
                 }
+                case "firstName" -> {
+                    String [] splitName = contact.retrieve().getName().split(" ", 0);
+                    if(splitName[0].equalsIgnoreCase((String) value)) {
+                        if(counter == 0)
+                            System.out.println("Contacts found!\n");
+                        System.out.println(contact.retrieve().toString());
+                        counter++;
+                    }
+                }
                 case "phoneNumber" -> {
                     if (contact.retrieve().getPhoneNumber().equalsIgnoreCase((String) value)) {
                         System.out.println(contact.retrieve().toString());
@@ -45,19 +54,19 @@ public class Phonebook{
                 }
                 case "email" -> {
                     if (contact.retrieve().getEmailAddress().equalsIgnoreCase((String) value)){
-                        counter += 1;
+                        counter++;
                         System.out.println(contact.retrieve().toString());
                     }
                 }
                 case "address" -> {
                     if (contact.retrieve().getAddress().equalsIgnoreCase((String) value)){
-                        counter += 1;
+                        counter++;
                         System.out.println(contact.retrieve().toString());
                     }
                 }
                 case "birthday" -> {
                     if (contact.retrieve().getBirthday().equalsIgnoreCase((String) value)){
-                        counter += 1;
+                        counter++;
                         System.out.println(contact.retrieve().toString());
                     }
                 }
@@ -180,5 +189,6 @@ public class Phonebook{
         printeventData();
         System.out.println();
     }
+
 
 }

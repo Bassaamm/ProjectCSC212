@@ -10,6 +10,7 @@ public class Main {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         Scanner scanner = new Scanner(System.in);
         int mainSwitch;
+        boolean mainMenu = true;
         System.out.println("Welcome to the linked Tree Phonebook!");
 
         do{
@@ -173,7 +174,11 @@ public class Main {
                 }
                 //Testing stuff
                 case 6 -> {
-//                    phonebook.printList();
+                    System.out.print("Enter the first name: ");
+                    String name = scanner.next();
+                    if(!phonebook.search("firstName", name))
+                        System.out.println("Sorry there are no contacts with this name\n");
+
                 }
                 //Testing stuff
                 case 7 -> {
@@ -183,15 +188,14 @@ public class Main {
                     phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
                     phonebook.sortedAdd(newContact2);
-                    phonebook.printAllevent();
-                }
 
-                default -> System.out.println("Please enter a valid option");
+                }
+                case 8 -> mainMenu = false;
+
+                default -> System.out.println("Please enter a valid input\n");
             }
-        }while(mainSwitch != 8);
-        System.out.println();
+        }while(mainMenu);
         System.out.println("Goodbye!");
-//        phonebook.printAllContacts();
 
     }
 }
