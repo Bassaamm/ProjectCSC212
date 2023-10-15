@@ -4,6 +4,7 @@ public class Main {
         Phonebook phonebook = new Phonebook();
         Scanner scanner = new Scanner(System.in);
         int mainSwitch;
+        boolean mainMenu = true;
         System.out.println("Welcome to the linked Tree Phonebook!");
 
         do{
@@ -161,11 +162,11 @@ public class Main {
                     phonebook.sortedAdd(newContact2);
 
                 }
+                case 8 -> mainMenu = false;
 
-                default -> System.out.println("Please enter a valid option");
+                default -> System.out.println("Please enter a valid input\n");
             }
-        }while(mainSwitch != 8);
-        System.out.println();
+        }while(mainMenu);
         System.out.println("Goodbye!");
 
     }
