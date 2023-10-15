@@ -7,12 +7,15 @@ public class Main {
     public static void main(String[] args)  {
         Phonebook phonebook = new Phonebook();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String datetieee = "11/11/2024 11:11";
         Scanner scanner = new Scanner(System.in);
         int mainSwitch;
         boolean mainMenu = true;
         System.out.println("Welcome to the linked Tree Phonebook!");
 
         do{
+
+            System.out.println("Event added");
             System.out.println("Please choose an option:");
             System.out.println("1.Add a contact");
             System.out.println("2.Search for a contact");
@@ -30,10 +33,12 @@ public class Main {
             switch (mainSwitch){
                 case 1 -> {
                     System.out.print("Enter the contact's name: ");
-                    String name = scanner.next();
+                    String Scancontumer = scanner.nextLine();
+                    String name = scanner.nextLine();
+                    System.out.println(name);
+
 
                     //duplicate name checker
-
                     if(phonebook.search("name", name)){
                         System.out.println("A contact with the same name already exists \n");
                         break;
@@ -52,7 +57,8 @@ public class Main {
                     String email = scanner.next();
 
                     System.out.print("Enter the contact's address: ");
-                    String address = scanner.next();
+                    Scancontumer = scanner.nextLine();
+                    String address = scanner.nextLine();
 
                     System.out.print("Enter the contact's birthday: ");
                     String birthday = scanner.next();
@@ -181,12 +187,6 @@ public class Main {
                 }
                 //Testing stuff
                 case 7 -> {
-                    Contact newContact = new Contact("fahad", "055", "email", "address", "birthday", "note");
-                    phonebook.sortedAdd(newContact);
-                    Contact newContact3 = new Contact("khalid", "056", "email2", "address2", "birthday2", "note2");
-                    phonebook.sortedAdd(newContact3);
-                    Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
-                    phonebook.sortedAdd(newContact2);
 
                 }
                 case 8 -> mainMenu = false;

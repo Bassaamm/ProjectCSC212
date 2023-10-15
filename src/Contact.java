@@ -81,6 +81,18 @@ public class Contact implements Comparable<Contact>{
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.name.compareTo(contact.name);
     }
+    public void printAllEvent() {
+        if (event.empty()) {
+            System.out.println("The event is empty");
+            return;
+        }
+        event.findFirst();
+        while (!event.last()) {
+            System.out.println(event.retrieve().toString());
+            event.findNext();
+        }
+        System.out.println(event.retrieve().toString());
+    }
 
     @Override
     public String toString() {

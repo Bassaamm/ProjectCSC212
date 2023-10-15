@@ -69,14 +69,11 @@ public class Event implements Comparable<Event>{
         return this.title.compareTo(event.title);
     }
 
-    @Override
     public String toString() {
-        return "Even {" +
-                "title='" + title + '\'' +
-                ", date=" + date +
-                ", time='" + time + '\'' +
-                ", location='" + location + '\'' +
-                '}';
+        return  "Event title:" + title + "\n" +
+                "Contact name" + date + "\n" +
+                "Event date and time (MM/DD/YYYY HH:MM):" + date + " " + time + "\n" +
+                "Event location: " + location + "\n";
     }
 
 }
