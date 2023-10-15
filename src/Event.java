@@ -1,38 +1,43 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Date;
 public class Event implements Comparable<Event>{
 
     private String  title;
-    private Date date;
-    private String time ;
+    private LocalDate date;
+    private LocalTime time ;
     private String location;
-   
+    private Contact contect;
 
-
-    public Event(String title, Date date, String location){
-        this.title=title;
-        this.date= new Date();
-        this.time=time;
-        this.location=location;
-        
+    public Event() {
+        this.title = "";
+        this.date = null;
+        this.time =null;
+        this.location = "";
+        this.contect = null;
     }
 
+    public Event(String title, LocalDate date, LocalTime time, String location , Contact contact){
+        this.title=title;
+        this.date=date ;
+        this.time= time ;
+        this.location=location;
+        this.contect = contact;
 
-
+    }
    public void setTitle(String title){
         this.title=title;
    }
-
-
-    public void setDate(Date date) {
-
+    public void setContect(Contact contect) {
+        this.contect = contect;
+    }
+    public void setDate(LocalDate date) {
         this.date = date;
     }
-
-    public void setTime(String time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
-
-
     public void setLocation(String location) {
         this.location = location;
     }
@@ -44,12 +49,15 @@ public class Event implements Comparable<Event>{
         return location;
     }
 
-    public String getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
+    }
+    public Contact getContect() {
+        return contect;
     }
   public int compareTo(Event event) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
