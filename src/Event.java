@@ -1,36 +1,46 @@
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Date;
 public class Event implements Comparable<Event>{
-  private String  title;
-    private Date date;
-    private String time ;
+
+    private String  title;
+    private LocalDate date;
+    private LocalTime time ;
     private String location;
-    public LinkedList<Contact>contact;
+    private Contact contect;
 
-
-    public Event(String title, Date date, String time,String location){
-        this.title=title;
-        this.date=date;
-        this.time=time;
-        this.location=location;
-        contact=new LinkedList<Contact>();
-
+    public Event() {
+        this.title = "";
+        this.date = null;
+        this.time =null;
+        this.location = "";
+        this.contect = null;
     }
 
+    public Event(String title, LocalDate date, LocalTime time, String location , Contact contact){
+        this.title=title;
+        this.date=date ;
+        this.time= time ;
+        this.location=location;
+        this.contect = contact;
 
-
+    }
    public void setTitle(String title){
         this.title=title;
    }
 
-    public void setDate(Date date) {
+    public void setContect(Contact contect) {
+        this.contect = contect;
+    }
+    public void setDate(LocalDate date) {
         this.date = date;
     }
+    public void setTime(LocalTime time) {
 
-    public void setTime(String time) {
         this.time = time;
     }
-
-
     public void setLocation(String location) {
         this.location = location;
     }
@@ -42,29 +52,16 @@ public class Event implements Comparable<Event>{
         return location;
     }
 
-    public String getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void sortedAdd(Contact e) {
-        if (contact.empty()) {
-            contact.insert(e);
-            return;
-        }
-        contact.findFirst();
-        while (!contact.last()) {
-            if (contact.retrieve().getName().compareTo(e.getName()) >= 0)
-                break;
-            contact.findNext();
-        }
-        if (contact.retrieve().getName().compareTo(e.getName()) <= 0) {
-            contact.insert(e);
-            return;
-        }
-        contact.insertBefore(e, contact.retrieve());
+    public Contact getContect() {
+        return contect;
+
     }
 
     public int compareTo(Event event) {
@@ -72,5 +69,14 @@ public class Event implements Comparable<Event>{
         return this.title.compareTo(event.title);
     }
 
+    @Override
+    public String toString() {
+        return "Even {" +
+                "title='" + title + '\'' +
+                ", date=" + date +
+                ", time='" + time + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 
 }

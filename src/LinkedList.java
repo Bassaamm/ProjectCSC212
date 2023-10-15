@@ -7,21 +7,13 @@ public class LinkedList<T> {
     public LinkedList(){
         head = current = null;
     }
-
-    public void printList(){
-        Node<T> temp = head;
-        while(temp != null){
-            System.out.println(temp.data);
-            temp = temp.next;
-        }
-    }
-
     public int getLength(){
         Node<T> temp = head;
         int counter = 0;
         while (temp != null) {
             temp = temp.next;
-            counter++;}
+            counter++;
+        }
         return counter;
     }
 
@@ -50,9 +42,6 @@ public class LinkedList<T> {
         current.data = val;
     }
 
-    //insert
-    //remove
-
     public void insert(T value){
         Node<T> temp;
         if (head == null)
@@ -65,9 +54,31 @@ public class LinkedList<T> {
             current.next = temp;
         }
     }
+    
+    public void insertBefore(T value, T currentData){
+        Node<T> newNode = new Node<>(value);
+        if(head == null) {
+            head = current = newNode;
+            return;
+        }
 
-
-
+        Node<T> current = head;
+        Node<T> previous = null;
+        while(current != null){
+            if(current.data.equals(currentData))
+                break;
+            previous = current;
+            current = current.next;
+        }
+        if(previous == null){
+            head = newNode;
+            head.next = current;
+            return;
+        }
+        previous.next = newNode;
+        newNode.next = current;
+    }
+    
     public void remove(){
         if (current == head)
             head = head.next;
@@ -84,4 +95,11 @@ public class LinkedList<T> {
 
     }
 
+    public void printList() {
+        Node<T> temp = head;
+        while (temp != null) {
+            System.out.println();
+            temp = temp.next;
+        }
+    }
 }
