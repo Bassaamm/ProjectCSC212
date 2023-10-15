@@ -121,9 +121,25 @@ public class Main {
 
                 // Delete a contact (Incomplete)
                 case 3 ->{
-                    System.out.print("Enter the phonenumber: ");
-                    String phoneNumber = scanner.next();
-                    phonebook.remove(phoneNumber);
+                    System.out.println("Enter search criteria: ");
+                    System.out.println("1.Name");
+                    System.out.println("2.Phone Number\n");
+                    System.out.print("Enter your choice: ");
+                    int option = scanner.nextInt();
+                    switch (option){
+                        case 1 -> {
+                            System.out.print("Enter the name: ");
+                            String ScanConsumer = scanner.nextLine();
+                            String name = scanner.nextLine();
+                            phonebook.removeContact("name", name);
+                        }
+                        case 2 ->{
+                            System.out.print("Enter the number: ");
+                            String ScanConsumer = scanner.nextLine();
+                            String phoneNumber = scanner.nextLine();
+                            phonebook.removeContact("phoneNumber", phoneNumber);
+                        }
+                    }
                 }
 
                 //Scheduale an event (Incomplete)
@@ -191,6 +207,7 @@ public class Main {
                 }
                 case 8 -> mainMenu = false;
 
+                case 9 -> phonebook.printAllContacts();
                 default -> System.out.println("Please enter a valid input\n");
             }
         }while(mainMenu);

@@ -96,13 +96,12 @@ public class Contact implements Comparable<Contact>{
 
     @Override
     public String toString() {
-        return "Contact " +'\n'+
-                "name= " + name + '\n' +
-                "phoneNumber= " + phoneNumber + '\n' +
-                "emailAddress= " + emailAddress + '\n' +
-                "address= " + address + '\n' +
-                "birthday= " + birthday + '\n' +
-                "notes= " + notes + '\n'
+        return  "Name: " + name + '\n' +
+                "Phone number: " + phoneNumber + '\n' +
+                "Email address: " + emailAddress + '\n' +
+                "Address: " + address + '\n' +
+                "Birthday: " + birthday + '\n' +
+                "Notes: " + notes + '\n'
                 ;
     }
 }
