@@ -1,7 +1,13 @@
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Phonebook phonebook = new Phonebook();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         Scanner scanner = new Scanner(System.in);
         int mainSwitch;
         boolean mainMenu = true;
@@ -28,6 +34,7 @@ public class Main {
                     String name = scanner.next();
 
                     //duplicate name checker
+
                     if(phonebook.search("name", name)){
                         System.out.println("A contact with the same name already exists \n");
                         break;
@@ -56,6 +63,7 @@ public class Main {
 
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
                     phonebook.sortedAdd(newContact);
+                    phonebook.contact.printList();
                     System.out.println();
                 }
 
@@ -119,12 +127,26 @@ public class Main {
                     String title = scanner.next();
                     System.out.print("Enter contact name: ");
                     String name = scanner.next();
+                    String ScannerConsumer = scanner.nextLine();
                     System.out.print("Enter event date and time(MM/DD/YYYY HH:MM): ");
-                    String dateTime = scanner.next();
+                    String dateTime = scanner.nextLine();
                     System.out.print("Enter event location: ");
                     String location = scanner.next();
                     System.out.println();
-
+                    if (phonebook.search("name", name)) {
+                        try {
+                            LocalDateTime allDate = LocalDateTime.parse(dateTime, format);
+                            LocalDate date = allDate.toLocalDate();
+                            LocalTime time = allDate.toLocalTime();
+                            Event newEvent = new Event(title , date ,time, location , phonebook.contact.retrieve());
+                            phonebook.sortedAddEvent(newEvent);
+                            System.out.println("Event added");
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter in the format dd/MM/yyyy HH:mm");
+                        }
+                    }
+                    else
+                        System.out.println("Failed to add event");
                 }
 
                 //
@@ -134,15 +156,21 @@ public class Main {
                     System.out.println("2.Event title \n");
                     System.out.print("Enter your choice: ");
                     int option = scanner.nextInt();
-
-                    if(option == 1){
-                        System.out.println("1");
-                    } else if (option == 2) {
-                        System.out.println("2");
-                    } else {
-                        System.out.println("Invalid input");
+                    switch (option){
+                        case 1 -> {
+                            System.out.print("Enter the contact name: ");
+                            String name = scanner.next();
+                            System.out.println();
+                            phonebook.searchEvent("name", name);
+                        }
+                        case 2 -> {
+                            System.out.print("Enter the event title: ");
+                            String event = scanner.next();
+                            System.out.println();
+                            phonebook.searchEvent("event", event);
+                        }
+                        default -> System.out.println("Invalid input");
                     }
-                    System.out.println();
                 }
                 //Testing stuff
                 case 6 -> {
