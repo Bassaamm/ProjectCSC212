@@ -21,7 +21,7 @@ public class Main {
             System.out.println("3.Delete a contact");
             System.out.println("4.Schedule an event");
             System.out.println("5.Print event details");
-            System.out.println("6.Print contact by first name");
+             System.out.println("6.Print contact by first name");
             System.out.println("7.Print all events alphabetically");
             System.out.println("8.Exit\n");
             System.out.print("Enter your choice: ");
@@ -122,7 +122,7 @@ public class Main {
 
                 // Delete a contact
                 case "3" ->{
-                    System.out.println("Enter search criteria: ");
+                    System.out.println("Enter remove criteria: ");
                     System.out.println("1.Name");
                     System.out.println("2.Phone Number\n");
                     System.out.print("Enter your choice: ");
@@ -136,8 +136,7 @@ public class Main {
                         }
                         case "2" ->{
                             System.out.print("Enter the number: ");
-                            String scanConsumer = scanner.nextLine();
-                            String phoneNumber = scanner.nextLine();
+                            String phoneNumber = scanner.next();
                             phonebook.removeContact("phoneNumber", phoneNumber);
                         }
                         default -> System.out.println("Invalid input");
@@ -149,8 +148,8 @@ public class Main {
                     System.out.print("Enter event title: ");
                     String title = scanner.next();
                     System.out.print("Enter contact name: ");
-                    String name = scanner.next();
                     String scanConsumer = scanner.nextLine();
+                    String name = scanner.nextLine();
                     System.out.print("Enter event date and time(MM/DD/YYYY HH:MM): ");
                     String dateTime = scanner.nextLine();
                     System.out.print("Enter event location: ");
@@ -182,7 +181,8 @@ public class Main {
                     switch (option){
                         case "1" -> {
                             System.out.print("Enter the contact name: ");
-                            String name = scanner.next();
+                            String scanConsumer = scanner.nextLine();
+                            String name = scanner.nextLine();
                             System.out.println();
                             phonebook.searchEvent("name", name);
                         }
@@ -204,20 +204,18 @@ public class Main {
                 }
 
                 case "7" -> {
-                    Contact c1 = new Contact("fahad f", "055", "a", "b", "c", "d");
+                    Contact c1 = new Contact("fahad f", "052", "a", "b", "c", "d");
                     Contact c2 = new Contact("ahmad a", "056", "a", "b", "c", "d");
-                    Contact c3 = new Contact("khalid ka", "055", "a", "b", "c", "d");
-                    Contact c4 = new Contact("abdullah ab", "055", "a", "b", "c", "d");
+                    Contact c3 = new Contact("khalid ka", "054", "a", "b", "c", "d");
+                    Contact c4 = new Contact("abdullah ab", "053", "a", "b", "c", "d");
                     phonebook.sortedAdd(c1);
                     phonebook.sortedAdd(c2);
                     phonebook.sortedAdd(c3);
                     phonebook.sortedAdd(c4);
-                    phonebook.printAllEvent();
+                    phonebook.printAllEventPhoneBook();
+
                 }
-
                 case "8" -> mainMenu = false;
-                case "9" -> phonebook.printAllContacts();
-
                 default -> System.out.println("Please enter a valid input\n");
             }
 

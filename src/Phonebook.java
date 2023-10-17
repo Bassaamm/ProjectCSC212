@@ -1,4 +1,6 @@
+
 public class Phonebook{
+
     public LinkedList<Contact> contact;
     public LinkedList<Event> event;
     public Phonebook() {
@@ -66,20 +68,21 @@ public class Phonebook{
     // Wants to use to search by, the value parameter takes the user input.
     // It returns a true if the value the user was looking for was found
     // ----------------------------Big O----------------------------------
-    // for the While(true) loop, we can’t apply Big O to this scenario in a meaningful way.
-    // since the loop will end if and only if the user enters 8, so it depends on the user input
-    // But we assume that if the user entered a number then the loop will start running
-    // And the worst case for that if the value that user was looking for does not exist
-    // Then we can say that search function is a O(N)
+    // The worst case for that if the value that user was looking for does not exist,
+    // Then we can say that search function is a O(n)
     public Boolean search(String criteria, String value) {
         int counter = 0;
+        // passedLast is used to check if the do while loop should check
+        //
         boolean passedLast = true;
         if (contact.empty()) {
              return false;
         }
         contact.findFirst();
+
+        // The Big O of split built-in Function is O(n)
         do {
-            if(contact.last())
+            if (contact.last())
                 passedLast = false;
             switch (criteria) {
                 case "name" -> {
@@ -142,22 +145,29 @@ public class Phonebook{
     // This method will search about contact by using search method
     // If it finds it , it will delete this contact and its event
     //--------------------------------Big O--------------------------------------------
-    // This method is big O(n) since the worst case scenario is the contact is not found
-    // Or there is no event for the contact that we will delete it
+    // This method is big O(n) since the worst case in this scenario is the contact
+    // is not found Or there is no event for the contact that we will delete it
     public void removeContact(String criteria, String value){
         boolean passedLast = true;
         if(search(criteria, value)){
+            boolean passedLast = true;
             String name = contact.retrieve().getName();
             contact.remove();
             do {
-                if(contact.last())
+
+                if (contact.last())
                     passedLast = false;
+              if (event.empty()){
+                  System.out.println("Contact Has been successfully removed\n");
+                    return;
+              }
                 if(contact.retrieve().getName().equalsIgnoreCase(name))
                     event.remove();
                 if(!contact.last())
                     contact.findNext();
             } while (!event.last() || passedLast);
-            System.out.println("Has been successfully removed\n");
+
+            System.out.println("Contact and his events were successfully removed\n");
             return;
         }
         System.out.println("No contacts removed\n");
@@ -177,7 +187,7 @@ public class Phonebook{
             case "name" -> {
                 boolean currentContact = search("nonPrintName" , value);
                 if (currentContact)
-                    contact.retrieve().printAllEvent();
+                    contact.retrieve().printAllEventContact();
             }
             case "event" -> {
                 int lengthE = event.getLength();
@@ -195,7 +205,6 @@ public class Phonebook{
         }
 
     }
-
     public void sortedAddEvent(Event e) {
        Boolean con = search("nonPrintName" , e.getContect().getName());
         if (event.empty() && con) {
@@ -222,10 +231,12 @@ public class Phonebook{
     // This function will print all events and its information by calling printEventData method
     //--------------------------------Big O--------------------------------------------------
     // Its big O(n) because its depends on the (n) number of event that will add.
-    public void printAllEvent() {
+
+    public void printAllEventPhoneBook() {
+        if (event.empty()) {
+            System.out.println("The event is empty");
+            return;
+        }
         event.printAll();
-    }
-    public void printAllContacts() {
-        contact.printAll();
     }
 }
