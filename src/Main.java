@@ -80,7 +80,7 @@ public class Main {
                     System.out.println("2.Phone Number");
                     System.out.println("3.Email Address");
                     System.out.println("4.Address");
-                    System.out.println("5.Birthday \n" );
+                    System.out.println("5.Birthday MM/DD/YYYY \n" );
                     System.out.print("Enter your choice: ");
                     String option = scanner.next();
                     switch (option){

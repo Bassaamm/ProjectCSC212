@@ -38,14 +38,18 @@ public class Phonebook{
         //inserts the new contact before the contact that is immediately larger than it
         contact.insertBefore(e, contact.retrieve());
     }
-
+    //------------------Search Function Description----------------------
+    // It's for the 6 input which is look for the events by the first name
+    // It takes a value as parameter
+    // ----------------------------Big O----------------------------------
+    // We have a nested loop
+    //
+    // Then we can say that search function is a O(n)
     public void searchFirstName(String value) {
         int counter = 0;
         boolean passedLast = true;
-
         if (contact.empty())
             return;
-
         contact.findFirst();
         do {
             if (contact.last())
@@ -164,7 +168,6 @@ public class Phonebook{
                 if(!contact.last())
                     contact.findNext();
             } while (!event.last() || passedLast);
-
             System.out.println("Contact and his events were successfully removed\n");
             return;
         }
@@ -203,6 +206,14 @@ public class Phonebook{
         }
 
     }
+    //----------------sortedAddEvent Function Description--------------------
+    // It accepts an Event from the user via the add an event case in the main
+    // and adds them to the event LinkedList sorted descending alphabetically
+    //----------------------------Big O----------------------------------
+    // The worst case scenario is that the event's name is the largest alphabetically
+    // so the Linked List pointer would point to the tail before calling either the insert
+    // or the insertBefore function both of which are O(n) so the big O of this function
+    // is O(n+m) which when simplified is O(n)
     public void sortedAddEvent(Event e) {
        Boolean con = search("nonPrintName" , e.getContect().getName());
         if (event.empty() && con) {
