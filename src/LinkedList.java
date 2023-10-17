@@ -7,6 +7,7 @@ public class LinkedList<T> {
     public LinkedList(){
         head = current = null;
     }
+    // Big O(n)
     public int getLength(){
         Node<T> temp = head;
         int counter = 0;
@@ -16,32 +17,35 @@ public class LinkedList<T> {
         }
         return counter;
     }
-
+    // Big O(1)
     public boolean empty() {
         return head == null;
     }
-
+    // Big O(1)
     public boolean last() {
         return current.next == null;
     }
-
+    // Big O(1)
     public void findFirst() {
         current = head;
     }
 
+    // Big O(1)
     public void findNext() {
-
         current = current.next;
     }
 
+    // Big O(1)
     public T retrieve () {
         return current.data;
     }
 
+    // Big O(1)
     public void update (T val) {
         current.data = val;
     }
 
+    // Big O(1)
     public void insert(T value){
         Node<T> temp;
         if (head == null)
@@ -54,7 +58,8 @@ public class LinkedList<T> {
             current.next = temp;
         }
     }
-    
+
+    // Big O(n)
     public void insertBefore(T value, T currentData){
         Node<T> newNode = new Node<>(value);
         if(head == null) {
@@ -78,7 +83,8 @@ public class LinkedList<T> {
         previous.next = newNode;
         newNode.next = current;
     }
-    
+
+    // Big O(n)
     public void remove(){
         if (current == head)
             head = head.next;
@@ -95,6 +101,7 @@ public class LinkedList<T> {
 
     }
 
+    // Big O(n)
     public void printList() {
         Node<T> temp = head;
         while (temp != null) {
