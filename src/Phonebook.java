@@ -1,6 +1,6 @@
 public class Phonebook{
-    LinkedList<Contact> contact;
-    LinkedList<Event> event;
+    public LinkedList<Contact> contact;
+    public LinkedList<Event> event;
     public Phonebook() {
         contact = new LinkedList<Contact>();
         event = new LinkedList<Event>();
@@ -94,6 +94,12 @@ public class Phonebook{
         if(search(criteria, value)){
             String name = contact.retrieve().getName();
             contact.remove();
+            while(true){
+                if (contact.retrieve().getName().equalsIgnoreCase(name));
+                    event.remove();
+                if (event.last())
+                    break;
+            }
             System.out.println("Has been successfully removed\n");
             return;
         }

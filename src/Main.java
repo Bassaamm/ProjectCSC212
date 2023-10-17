@@ -7,14 +7,12 @@ public class Main {
     public static void main(String[] args)  {
         Phonebook phonebook = new Phonebook();
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        String datetieee = "11/11/2024 11:11";
         Scanner scanner = new Scanner(System.in);
         int mainSwitch;
         boolean mainMenu = true;
         System.out.println("Welcome to the linked Tree Phonebook!");
 
         do{
-
             System.out.println("Event added");
             System.out.println("Please choose an option:");
             System.out.println("1.Add a contact");
@@ -36,7 +34,6 @@ public class Main {
                     String Scancontumer = scanner.nextLine();
                     String name = scanner.nextLine();
                     System.out.println(name);
-
 
                     //duplicate name checker
                     if(phonebook.search("name", name)){
@@ -66,6 +63,7 @@ public class Main {
                     System.out.print("Enter any notes contact: ");
                     String note = scanner.next();
 
+                    // Creating Contact
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
                     phonebook.sortedAdd(newContact);
                     phonebook.contact.printList();
@@ -86,7 +84,7 @@ public class Main {
 
                         case 1 -> {
                             System.out.print("Enter the name: ");
-                            String name = scanner.next();
+                            String name = scanner.nextLine();
                             System.out.println();
                             phonebook.search("name", name);
                         }
