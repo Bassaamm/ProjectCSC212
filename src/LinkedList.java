@@ -7,6 +7,13 @@ public class LinkedList<T> {
     public LinkedList(){
         head = current = null;
     }
+    public void printAll(){
+        Node<T> temp = head;
+        while(temp != null){
+            System.out.println(current.data.toString());
+            temp = temp.next;
+        }
+    }
     // Big O(n)
     public int getLength(){
         Node<T> temp = head;
@@ -66,7 +73,6 @@ public class LinkedList<T> {
             head = current = newNode;
             return;
         }
-
         Node<T> current = head;
         Node<T> previous = null;
         while(current != null){
