@@ -150,11 +150,9 @@ public class Phonebook{
     public void removeContact(String criteria, String value){
         boolean passedLast = true;
         if(search(criteria, value)){
-            boolean passedLast = true;
             String name = contact.retrieve().getName();
             contact.remove();
             do {
-
                 if (contact.last())
                     passedLast = false;
               if (event.empty()){
