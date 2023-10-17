@@ -199,16 +199,24 @@ public class Main {
                 case "6" -> {
                     System.out.print("Enter the first name: ");
                     String name = scanner.next();
-                    if(!phonebook.search("firstName", name))
-                        System.out.println("Sorry there are no contacts with this name\n");
+                    phonebook.searchFirstName(name);
 
                 }
 
                 case "7" -> {
+                    Contact c1 = new Contact("fahad f", "055", "a", "b", "c", "d");
+                    Contact c2 = new Contact("ahmad a", "056", "a", "b", "c", "d");
+                    Contact c3 = new Contact("khalid ka", "055", "a", "b", "c", "d");
+                    Contact c4 = new Contact("abdullah ab", "055", "a", "b", "c", "d");
+                    phonebook.sortedAdd(c1);
+                    phonebook.sortedAdd(c2);
+                    phonebook.sortedAdd(c3);
+                    phonebook.sortedAdd(c4);
                     phonebook.printAllEvent();
                 }
 
                 case "8" -> mainMenu = false;
+                case "9" -> phonebook.printAllContacts();
 
                 default -> System.out.println("Please enter a valid input\n");
             }
