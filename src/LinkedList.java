@@ -100,13 +100,4 @@ public class LinkedList<T> {
             current = current.next;
 
     }
-
-    // Big O(n)
-    public void printList() {
-        Node<T> temp = head;
-        while (temp != null) {
-            System.out.println();
-            temp = temp.next;
-        }
-    }
 }

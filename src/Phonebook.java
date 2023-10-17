@@ -6,7 +6,7 @@ public class Phonebook{
         event = new LinkedList<Event>();
     }
 
-    // Abdulaziz
+    //----------------SortedAdd Function Description--------------------
     public void sortedAdd(Contact e){
         if(contact.empty()){
 
@@ -43,8 +43,8 @@ public class Phonebook{
         }
         contact.findFirst();
         // The Big O of split built-in Function is O(n)
-        String [] splitName = contact.retrieve().getName().split(" ", 0);
-        while (true) {
+        String[] splitName = contact.retrieve().getName().split(" ", 0);
+        do {
             switch (criteria) {
                 case "name" -> {
                     if (contact.retrieve().getName().equalsIgnoreCase(value)) {
@@ -58,9 +58,10 @@ public class Phonebook{
                         return true;
                     }
                 }
+
                 // for the feature number 6
                 case "firstName" -> {
-                    if(splitName[0].equalsIgnoreCase((String) value)) {
+                    if(splitName[0].equalsIgnoreCase(value)) {
                         if(counter == 0)
                             System.out.println("Contacts found!\n");
                         System.out.println(contact.retrieve().toString());
@@ -69,38 +70,48 @@ public class Phonebook{
                 }
                 case "phoneNumber" -> {
                     System.out.println();
-                    if (contact.retrieve().getPhoneNumber().equalsIgnoreCase((String) value)) {
+                    if (contact.retrieve().getPhoneNumber().equalsIgnoreCase(value)) {
                         System.out.println(contact.retrieve().toString());
                         return true;
                     }
                 }
+                case "nonPrintPhoneNumber" -> {
+                    System.out.println();
+                    if (contact.retrieve().getPhoneNumber().equalsIgnoreCase(value)) {
+                        return true;
+                    }
+                }
+
                 case "email" -> {
-                    if (contact.retrieve().getEmailAddress().equalsIgnoreCase((String) value)){
+                    if (contact.retrieve().getEmailAddress().equalsIgnoreCase(value)){
+                        if(counter == 0)
+                            System.out.println("Contacts found!\n");
                         counter++;
                         System.out.println(contact.retrieve().toString());
                     }
                 }
                 case "address" -> {
-                    if (contact.retrieve().getAddress().equalsIgnoreCase((String) value)){
+                    if (contact.retrieve().getAddress().equalsIgnoreCase(value)){
+                        if(counter == 0)
+                            System.out.println("Contacts found!\n");
                         counter++;
                         System.out.println(contact.retrieve().toString());
                     }
                 }
                 case "birthday" -> {
-                    if (contact.retrieve().getBirthday().equalsIgnoreCase((String) value)){
+                    if (contact.retrieve().getBirthday().equalsIgnoreCase(value)){
+                        if(counter == 0)
+                            System.out.println("Contacts found!\n");
                         counter++;
                         System.out.println(contact.retrieve().toString());
                     }
                 }
             }
-            if(contact.last())
-                break;
-
-            contact.findNext();
-        }
+            if (!contact.last())
+                contact.findNext();
+        }while(!contact.last());
         return !(counter == 0);
     }
-
     //----------------------removeContact Function description-------------------------
     // This method will search about contact by using search method
     // If it finds it , it will delete this contact and its event
@@ -111,17 +122,16 @@ public class Phonebook{
         if(search(criteria, value)){
             String name = contact.retrieve().getName();
             contact.remove();
-            while(true){
-                if (contact.retrieve().getName().equalsIgnoreCase(name));
+            do {
+                if(contact.retrieve().getName().equalsIgnoreCase(name))
                     event.remove();
-                if (event.last())
-                    break;
-            }
+                if(!contact.last())
+                    contact.findNext();
+            } while (!event.last());
             System.out.println("Has been successfully removed\n");
             return;
         }
         System.out.println("No contacts removed\n");
-        return;
     }
     //------------------searchEvent Method Description----------------------
     // searchEvent Method depends on search method to set the current contact node
@@ -135,17 +145,17 @@ public class Phonebook{
     // So obviously it's a O(n)
     public void searchEvent(String criteria, String value) {
         switch (criteria) {
-        case "name" -> {
-            boolean currentContact = search("nonPrintName" , value);
-            if (currentContact)
-                contact.retrieve().printAllEvent();
+            case "name" -> {
+                boolean currentContact = search("nonPrintName" , value);
+                if (currentContact)
+                    contact.retrieve().printAllEvent();
             }
-           case "event" -> {
+            case "event" -> {
                 int lengthE = event.getLength();
                 event.findFirst();
                 for (int j = 0; j < lengthE; j++) {
                     if (event.retrieve().getTitle().equalsIgnoreCase(value)){
-                        printEventData();
+                        System.out.println(event.retrieve().toString());
                         return;
                     }
                     else
@@ -156,6 +166,7 @@ public class Phonebook{
         }
 
     }
+
     public void sortedAddEvent(Event e) {
        Boolean con = search("nonPrintName" , e.getContect().getName());
         if (event.empty() && con) {
@@ -178,43 +189,6 @@ public class Phonebook{
         event.insertBefore(e, event.retrieve());
     }
 
-    public void printContact(){
-        System.out.println("Name: " + contact.retrieve().getName());
-        System.out.println("Phone Number: " + contact.retrieve().getPhoneNumber());
-        System.out.println("Email Address: " + contact.retrieve().getEmailAddress());
-        System.out.println("Address: " + contact.retrieve().getAddress());
-        System.out.println("Birthday: " + contact.retrieve().getBirthday());
-        System.out.println("Notes: " + contact.retrieve().getNotes());
-        System.out.println("==============================");
-    }
-    //--------------------printallContacts Function description----------------------------
-    //this function will print all contacts and its information by calling printContact method
-    //--------------------------------Big o------------------------------------------------
-    // its big O(n) because its depends on the (n) number of contact that will add.
-    public void printAllContacts(){
-        if(contact.empty()) {
-            System.out.println("The PhoneBook is empty");
-            return;
-        }
-        contact.findFirst();
-        while(!contact.last()){
-            printContact();
-            contact.findNext();
-        }
-        printContact();
-        System.out.println();
-    }
-    //-----------printEventData Function description------
-    // This function will print the event information
-    //-----------------------Big o----------------------
-    // Its big O(1)
-    public void printEventData() {
-        System.out.println("title: " + event.retrieve().getTitle());
-        System.out.println("event date: " + event.retrieve().getDate());
-        System.out.println("event time: " + event.retrieve().getTime());
-        System.out.println("location: " + event.retrieve().getLocation());
-        System.out.println();
-    }
     //-------------------------printAllEvent Function description----------------------------
     // This function will print all events and its information by calling printEventData method
     //--------------------------------Big O--------------------------------------------------
@@ -225,12 +199,10 @@ public class Phonebook{
             return;
         }
         event.findFirst();
-        while (!event.last()) {
-            printEventData();
+        do{
+            System.out.println(event.retrieve().toString());
             event.findNext();
-            System.out.println();
-        }
-        printEventData();
-        System.out.println();
+        }while (!event.last());
+        event.findFirst();
     }
 }

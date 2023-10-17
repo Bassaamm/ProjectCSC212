@@ -10,14 +10,6 @@ public class Event implements Comparable<Event>{
     private String location;
     private Contact contact;
 
-    public Event() {
-        this.title = "";
-        this.date = null;
-        this.time =null;
-        this.location = "";
-        this.contact = null;
-    }
-
     public Event(String title, LocalDate date, LocalTime time, String location , Contact contact){
         this.title=title;
         this.date=date ;
@@ -29,14 +21,13 @@ public class Event implements Comparable<Event>{
         this.title=title;
    }
 
-    public void setContect(Contact contect) {
-        this.contact = contect;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
     public void setDate(LocalDate date) {
         this.date = date;
     }
     public void setTime(LocalTime time) {
-
         this.time = time;
     }
     public void setLocation(String location) {
@@ -67,12 +58,11 @@ public class Event implements Comparable<Event>{
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.title.compareTo(event.title);
     }
-    // The Big O of compareTo function is O(1)
+    // The Big O of toString function is O(1)
     public String toString() {
         return  "Event title:" + title + "\n" +
                 "Contact name" + date + "\n" +
                 "Event date and time (MM/DD/YYYY HH:MM):" + date + " " + time + "\n" +
                 "Event location: " + location + "\n";
     }
-
 }
