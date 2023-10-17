@@ -80,13 +80,9 @@ public class Contact implements Comparable<Contact>{
             System.out.println("The event is empty");
             return;
         }
-        event.findFirst();
-        while (!event.last()) {
-            System.out.println(event.retrieve().toString());
-            event.findNext();
-        }
-        System.out.println(event.retrieve().toString());
+        event.printAll();
     }
+
 
     // The Big O of toString function is O(1)
     public String toString() {
