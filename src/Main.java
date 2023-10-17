@@ -199,8 +199,7 @@ public class Main {
                 case "6" -> {
                     System.out.print("Enter the first name: ");
                     String name = scanner.next();
-                    if(!phonebook.search("firstName", name))
-                        System.out.println("Sorry there are no contacts with this name\n");
+                    phonebook.searchFirstName(name);
 
                 }
 
@@ -217,7 +216,6 @@ public class Main {
 
                 }
                 case "8" -> mainMenu = false;
-
                 default -> System.out.println("Please enter a valid input\n");
             }
 

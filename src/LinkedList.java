@@ -106,4 +106,13 @@ public class LinkedList<T> {
             current = current.next;
 
     }
+    public void printAll(){
+        if(head == null)
+            return;
+        Node<T> temp = head;
+        while(temp != null){
+            System.out.println(temp.data.toString());
+            temp = temp.next;
+        }
+    }
 }

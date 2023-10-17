@@ -9,24 +9,59 @@ public class Phonebook{
     }
 
     //----------------SortedAdd Function Description--------------------
+    // It accepts a contact from the user via the add a contact case in the main
+    // and adds them to the contacts LinkedList sorted descending alphabetically
+    //----------------------------Big O----------------------------------
+    // The worst case scenario is that the contact's name is the largest alphabetically
+    // so the Linked List pointer would point to the tail before calling either the insert
+    // or the insertBefore function both of which are O(n) so the big O of this function
+    // is O(n+m) which when simplified is O(n)
     public void sortedAdd(Contact e){
-        if(contact.empty()){
 
+        if(contact.empty()){
             contact.insert(e);
             return;
         }
         contact.findFirst();
 
         while(!contact.last()){
+            //if the name of the new contact is smaller alphabetically than the current, break.
             if(contact.retrieve().getName().compareTo(e.getName()) > 0)
                 break;
             contact.findNext();
         }
+        //to handle if the pointer is on the tail and see if it should be inserted before or after tail
         if(contact.retrieve().getName().compareTo(e.getName()) <= 0) {
             contact.insert(e);
             return;
         }
+        //inserts the new contact before the contact that is immediately larger than it
         contact.insertBefore(e, contact.retrieve());
+    }
+
+    public void searchFirstName(String value) {
+        int counter = 0;
+        boolean passedLast = true;
+
+        if (contact.empty())
+            return;
+
+        contact.findFirst();
+        do {
+            if (contact.last())
+                passedLast = false;
+            String[] splitName = contact.retrieve().getName().split(" ", 0);
+            if (splitName[0].equalsIgnoreCase(value)) {
+                if (counter == 0)
+                    System.out.println("\nContacts found!\n");
+                System.out.println(contact.retrieve().toString());
+                counter++;
+            }
+            if (!contact.last())
+                contact.findNext();
+        } while (!contact.last() || passedLast);
+        if (counter == 0)
+            System.out.println("Sorry no contacts with thi name exist.\n");
     }
     //------------------Search Function Description----------------------
     // it uses the criteria parameter to let the use decide which attribute
@@ -44,6 +79,7 @@ public class Phonebook{
              return false;
         }
         contact.findFirst();
+
         // The Big O of split built-in Function is O(n)
         do {
             if (contact.last())
@@ -59,16 +95,6 @@ public class Phonebook{
                 case "nonPrintName" -> {
                     if (contact.retrieve().getName().equalsIgnoreCase(value)) {
                         return true;
-                    }
-                }
-                // for the feature number 6
-                case "firstName" -> {
-                    String[] splitName = contact.retrieve().getName().split(" ", 0);
-                    if(splitName[0].equalsIgnoreCase(value)) {
-                        if(counter == 0)
-                            System.out.println("Contacts found!\n");
-                        System.out.println(contact.retrieve().toString());
-                        counter++;
                     }
                 }
                 case "phoneNumber" -> {
@@ -110,7 +136,7 @@ public class Phonebook{
                     }
                 }
             }
-            if (!contact.last())
+            if(!contact.last())
                 contact.findNext();
         }while(!contact.last() || passedLast);
         return !(counter == 0);
@@ -122,11 +148,13 @@ public class Phonebook{
     // This method is big O(n) since the worst case in this scenario is the contact
     // is not found Or there is no event for the contact that we will delete it
     public void removeContact(String criteria, String value){
+        boolean passedLast = true;
         if(search(criteria, value)){
             boolean passedLast = true;
             String name = contact.retrieve().getName();
             contact.remove();
             do {
+
                 if (contact.last())
                     passedLast = false;
               if (event.empty()){
@@ -138,6 +166,7 @@ public class Phonebook{
                 if(!contact.last())
                     contact.findNext();
             } while (!event.last() || passedLast);
+
             System.out.println("Contact and his events were successfully removed\n");
             return;
         }
@@ -202,6 +231,7 @@ public class Phonebook{
     // This function will print all events and its information by calling printEventData method
     //--------------------------------Big O--------------------------------------------------
     // Its big O(n) because its depends on the (n) number of event that will add.
+
     public void printAllEventPhoneBook() {
         if (event.empty()) {
             System.out.println("The event is empty");
