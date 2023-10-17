@@ -61,7 +61,7 @@ public class Event implements Comparable<Event>{
     // The Big O of toString function is O(1)
     public String toString() {
         return  "Event title:" + title + "\n" +
-                "Contact name" + date + "\n" +
+                "Contact name" + contact.getName() + "\n" +
                 "Event date and time (MM/DD/YYYY HH:MM):" + date + " " + time + "\n" +
                 "Event location: " + location + "\n";
     }

@@ -38,14 +38,18 @@ public class Phonebook{
         //inserts the new contact before the contact that is immediately larger than it
         contact.insertBefore(e, contact.retrieve());
     }
-
+    //------------------Search Function Description----------------------
+    // It's for the 6 input which is look for the events by the first name
+    // It takes a value as parameter
+    // ----------------------------Big O----------------------------------
+    // We have a nested loop
+    //
+    // Then we can say that search function is a O(n)
     public void searchFirstName(String value) {
         int counter = 0;
         boolean passedLast = true;
-
         if (contact.empty())
             return;
-
         contact.findFirst();
         do {
             if (contact.last())
