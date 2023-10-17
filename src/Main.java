@@ -2,8 +2,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Main {
     public static void main(String[] args)  {
         Phonebook phonebook = new Phonebook();
@@ -34,6 +36,12 @@ public class Main {
                     System.out.print("Enter the contact's name: ");
                     String scanConsumer = scanner.nextLine();
                     String name = scanner.nextLine();
+                    Pattern patternName = Pattern.compile("^[A-Za-z]+\\s[A-Za-z]+$");
+                    Matcher nameMatch = patternName.matcher(name);
+                    if(!nameMatch.matches()){
+                        System.out.println("\nInvalid name please separate the first and last names with a space (ex:firstName lastName)\n");
+                        break;
+                    }
 
                     //duplicate name checker
                     if(phonebook.search("nonPrintName", name)){
@@ -43,6 +51,12 @@ public class Main {
 
                     System.out.print("Enter the contact's phone number: ");
                     String phoneNumber = scanner.next();
+                    Pattern patternNumber = Pattern.compile("^\\d{10}$");
+                    Matcher phoneMatch = patternNumber.matcher(phoneNumber);
+                    if(!phoneMatch.matches()){
+                        System.out.println("\nInvalid phone number please insert 10 consecutive numbers (ex:1234567890)\n");
+                        break;
+                    }
 
                     //duplicate number checker
                     if(phonebook.search("nonPrintPhoneNumber", phoneNumber)){
@@ -62,6 +76,13 @@ public class Main {
                     //birthday input
                     System.out.print("Enter the contact's birthday: ");
                     String birthday = scanner.next();
+                    Pattern patternBirthday = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(\\d{4})$");
+                    Matcher birthdayMatch = patternBirthday.matcher(birthday);
+                    if(!birthdayMatch.matches()){
+                        System.out.println("\nInvalid birthday please use the format: DD/MM/YYYY.\n");
+                    }
+
+
 
                     //notes input
                     System.out.print("Enter any notes contact: ");
