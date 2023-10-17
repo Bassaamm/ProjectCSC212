@@ -201,15 +201,21 @@ public class Main {
                 }
                 //Testing stuff
                 case 7 -> {
-
+                    Contact newContact = new Contact("fahad", "055", "email", "address", "birthday", "note");
+                    phonebook.sortedAdd(newContact);
+                    Contact newContact3 = new Contact("khalid", "056", "email2", "address2", "birthday2", "note2");
+                    phonebook.sortedAdd(newContact3);
+                    Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
+                    phonebook.sortedAdd(newContact2);
+                    phonebook.printAllEvent();
                 }
                 case 8 -> mainMenu = false;
-
                 case 9 -> phonebook.printAllContacts();
                 default -> System.out.println("Please enter a valid input\n");
             }
+
         }while(mainMenu);
         System.out.println("Goodbye!");
+    }
 
     }
-}

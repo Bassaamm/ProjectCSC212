@@ -1,22 +1,21 @@
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Date;
+
 public class Event implements Comparable<Event>{
 
     private String  title;
     private LocalDate date;
     private LocalTime time ;
     private String location;
-    private Contact contect;
+    private Contact contact;
 
     public Event() {
         this.title = "";
         this.date = null;
         this.time =null;
         this.location = "";
-        this.contect = null;
+        this.contact = null;
     }
 
     public Event(String title, LocalDate date, LocalTime time, String location , Contact contact){
@@ -24,15 +23,14 @@ public class Event implements Comparable<Event>{
         this.date=date ;
         this.time= time ;
         this.location=location;
-        this.contect = contact;
-
+        this.contact = contact;
     }
    public void setTitle(String title){
         this.title=title;
    }
 
     public void setContect(Contact contect) {
-        this.contect = contect;
+        this.contact = contect;
     }
     public void setDate(LocalDate date) {
         this.date = date;
@@ -60,15 +58,16 @@ public class Event implements Comparable<Event>{
         return date;
     }
     public Contact getContect() {
-        return contect;
+        return contact;
 
     }
 
+    // The Big O of compareTo function is O(n)
     public int compareTo(Event event) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.title.compareTo(event.title);
     }
-
+    // The Big O of compareTo function is O(1)
     public String toString() {
         return  "Event title:" + title + "\n" +
                 "Contact name" + date + "\n" +
