@@ -75,7 +75,7 @@ public class Contact implements Comparable<Contact>{
     // This function will print all events and its information by calling printEventData method
     //--------------------------------Big o--------------------------------------------------
     // Its big O(n) because its depends on the (n) number of event that will add.
-    public void printAllEvent() {
+    public void printAllEventContact() {
         if (event.empty()) {
             System.out.println("The event is empty");
             return;
