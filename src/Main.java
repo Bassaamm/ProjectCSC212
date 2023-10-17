@@ -2,7 +2,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args)  {
@@ -14,6 +13,7 @@ public class Main {
         System.out.println("Welcome to the linked Tree Phonebook!");
 
         do{
+            System.out.println("Event added");
             System.out.println("Please choose an option:");
             System.out.println("1.Add a contact");
             System.out.println("2.Search for a contact");
@@ -31,10 +31,11 @@ public class Main {
             switch (mainSwitch){
                 case 1 -> {
                     System.out.print("Enter the contact's name: ");
-                    String name = scanner.next();
+                    String Scancontumer = scanner.nextLine();
+                    String name = scanner.nextLine();
+                    System.out.println(name);
 
                     //duplicate name checker
-
                     if(phonebook.search("name", name)){
                         System.out.println("A contact with the same name already exists \n");
                         break;
@@ -53,7 +54,8 @@ public class Main {
                     String email = scanner.next();
 
                     System.out.print("Enter the contact's address: ");
-                    String address = scanner.next();
+                    Scancontumer = scanner.nextLine();
+                    String address = scanner.nextLine();
 
                     System.out.print("Enter the contact's birthday: ");
                     String birthday = scanner.next();
@@ -61,6 +63,7 @@ public class Main {
                     System.out.print("Enter any notes contact: ");
                     String note = scanner.next();
 
+                    // Creating Contact
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
                     phonebook.sortedAdd(newContact);
                     phonebook.contact.printList();
@@ -81,7 +84,7 @@ public class Main {
 
                         case 1 -> {
                             System.out.print("Enter the name: ");
-                            String name = scanner.next();
+                            String name = scanner.nextLine();
                             System.out.println();
                             phonebook.search("name", name);
                         }
@@ -204,14 +207,15 @@ public class Main {
                     phonebook.sortedAdd(newContact3);
                     Contact newContact2 = new Contact("abdullah", "057", "email2", "address2", "birthday2", "note2");
                     phonebook.sortedAdd(newContact2);
-
+                    phonebook.printAllEvent();
                 }
                 case 8 -> mainMenu = false;
-
+                case 9 -> phonebook.printAllContacts();
                 default -> System.out.println("Please enter a valid input\n");
             }
+
         }while(mainMenu);
         System.out.println("Goodbye!");
+    }
 
     }
-}
