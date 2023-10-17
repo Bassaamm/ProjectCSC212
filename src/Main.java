@@ -208,7 +208,6 @@ public class Main {
                 }
                 case 8 -> mainMenu = false;
 
-                case 9 -> phonebook.printAllContacts();
                 default -> System.out.println("Please enter a valid input\n");
             }
         }while(mainMenu);

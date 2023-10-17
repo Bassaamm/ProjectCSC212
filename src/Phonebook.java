@@ -42,6 +42,11 @@ public class Phonebook{
                         return true;
                     }
                 }
+                case "nonPrintName" -> {
+                    if (contact.retrieve().getName().equalsIgnoreCase(value)) {
+                        return true;
+                    }
+                }
                 case "firstName" -> {
                     String [] splitName = contact.retrieve().getName().split(" ", 0);
                     if(splitName[0].equalsIgnoreCase((String) value)) {
@@ -105,7 +110,7 @@ public class Phonebook{
                 Contact currentC = contact.retrieve();
                 for (int i = 0; i < lengthC; i++) {
                     if (currentC.getName().equalsIgnoreCase(value))
-                        printCurrentEvent(currentC.event.retrieve());
+                        currentC.event
 
                     else {
                         contact.findNext();
@@ -151,56 +156,12 @@ public class Phonebook{
     }
 
     public void printCurrentEvent(Event current) {
-        System.out.println("Title: " + current.getTitle());
+        System.out.println("Title: " + contact.retrieve().event.toString()current.getTitle());
         System.out.println("Date: " + current.getDate());
         System.out.println("Time: " + current.getTime());
         System.out.println("Location: " + current.getLocation());
         System.out.println();
 
     }
-    private void printContact(){
-        System.out.println("Name: " + contact.retrieve().getName());
-        System.out.println("Phone Number: " + contact.retrieve().getPhoneNumber());
-        System.out.println("Email Address: " + contact.retrieve().getEmailAddress());
-        System.out.println("Address: " + contact.retrieve().getAddress());
-        System.out.println("Birthday: " + contact.retrieve().getBirthday());
-        System.out.println("Notes: " + contact.retrieve().getNotes());
-        System.out.println("==============================");
-    }
-    public void printAllContacts(){
-        if(contact.empty()) {
-            System.out.println("The PhoneBook is empty");
-            return;
-        }
-        contact.findFirst();
-        while(!contact.last()){
-            printContact();
-            contact.findNext();
-        }
-        printContact();
-        System.out.println();
-    }
-    private void printeventData() {
-        System.out.println("title: " + event.retrieve().getTitle());
-        System.out.println("event date: " + event.retrieve().getDate());
-        System.out.println("event time: " + event.retrieve().getTime());
-        System.out.println("location: " + event.retrieve().getLocation());
-
-    }
-    public void printAllevent() {
-        if (event.empty()) {
-            System.out.println("The event is empty");
-            return;
-        }
-        event.findFirst();
-        while (!event.last()) {
-            printeventData();
-            event.findNext();
-            System.out.println();
-        }
-        printeventData();
-        System.out.println();
-    }
-
 
 }
