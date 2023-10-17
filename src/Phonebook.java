@@ -1,6 +1,6 @@
 public class Phonebook{
-    LinkedList<Contact> contact;
-    LinkedList<Event> event;
+    public LinkedList<Contact> contact;
+    public LinkedList<Event> event;
     public Phonebook() {
         contact = new LinkedList<Contact>();
         event = new LinkedList<Event>();
@@ -31,13 +31,19 @@ public class Phonebook{
         if (contact.empty()) {
              return false;
         }
-
+        System.out.println(value);
         contact.findFirst();
         while (true) {
             switch (criteria) {
                 case "name" -> {
                     if (contact.retrieve().getName().equalsIgnoreCase(value)) {
+                        System.out.println();
                         System.out.println(contact.retrieve().toString());
+                        return true;
+                    }
+                }
+                case "nonPrintName" -> {
+                    if (contact.retrieve().getName().equalsIgnoreCase(value)) {
                         return true;
                     }
                 }
@@ -51,6 +57,7 @@ public class Phonebook{
                     }
                 }
                 case "phoneNumber" -> {
+                    System.out.println();
                     if (contact.retrieve().getPhoneNumber().equalsIgnoreCase((String) value)) {
                         System.out.println(contact.retrieve().toString());
                         return true;
@@ -83,28 +90,30 @@ public class Phonebook{
         return !(counter == 0);
     }
 
-    public Boolean remove(String number){
-        boolean temp = search("phoneNumber" ,number);
-        contact.remove();
-        return true;
+    public void removeContact(String criteria, String value){
+        if(search(criteria, value)){
+            String name = contact.retrieve().getName();
+            contact.remove();
+            while(true){
+                if (contact.retrieve().getName().equalsIgnoreCase(name));
+                    event.remove();
+                if (event.last())
+                    break;
+            }
+            System.out.println("Has been successfully removed\n");
+            return;
+        }
+        System.out.println("No contacts removed\n");
+        return;
     }
 
-    public void searchEvent(String name, String value) {
+    public void searchEvent(String criteria, String value) {
 
-        switch (name) {
+        switch (criteria) {
         case "name" -> {
-                int lengthC = contact.retrieve().event.getLength();
-                System.out.println(lengthC);
-                Contact currentC = contact.retrieve();
-                for (int i = 0; i < lengthC; i++) {
-                    if (currentC.getName().equalsIgnoreCase(value))
-                        printCurrentEvent(currentC.event.retrieve());
-
-                    else {
-                        contact.findNext();
-                        currentC = contact.retrieve();
-                    }
-                }
+            boolean currentContact = search("nonPrintName" , value);
+            if (currentContact == true)
+                contact.retrieve().printAllEvent();
             }
            case "event" -> {
                 int lengthE = contact.retrieve().event.getLength();
@@ -122,7 +131,7 @@ public class Phonebook{
 
     }
     public void sortedAddEvent(Event e) {
-       Boolean con = search("name" , e.getContect().getName());
+       Boolean con = search("nonPrintName" , e.getContect().getName());
         if (event.empty() && con) {
             contact.retrieve().event.insert(e);
             event.insert(e);
@@ -178,7 +187,6 @@ public class Phonebook{
         System.out.println("event date: " + event.retrieve().getDate());
         System.out.println("event time: " + event.retrieve().getTime());
         System.out.println("location: " + event.retrieve().getLocation());
-
     }
     public void printAllevent() {
         if (event.empty()) {
@@ -194,6 +202,30 @@ public class Phonebook{
         printeventData();
         System.out.println();
     }
+    public void printAllContactsEvents(){
+        if(contact.empty()) {
+            System.out.println("The PhoneBook is empty");
+            return;
+        }
+        contact.retrieve().event.findFirst();
+        while(!(contact.retrieve().event.last())){
+            printeventData();
+        }
 
+        printeventData();
+        System.out.println();
+    }
+    public void printAllEvent() {
+        if (contact.retrieve().event.empty()) {
+            System.out.println("The event is empty");
+            return;
+        }
+        contact.retrieve().event.findFirst();
+        while (!(contact.retrieve().event.last())) {
+            System.out.println(contact.retrieve().event.toString());
+           contact.retrieve().event.findNext();
+        }
+        System.out.println(contact.retrieve().event.toString());
+    }
 
 }
