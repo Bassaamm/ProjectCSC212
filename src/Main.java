@@ -34,9 +34,9 @@ public class Main {
                 case "1" -> {
                     //name input
                     System.out.print("Enter the contact's name: ");
-                    String scanConsumer = scanner.nextLine();
+                    scanner.nextLine();
                     String name = scanner.nextLine();
-                    Pattern patternName = Pattern.compile("^[A-Za-z]+\\s[A-Za-z]+$");
+                    Pattern patternName = Pattern.compile("^[A-Za-z]+\\s[A-Za-z\\-]+$");
                     Matcher nameMatch = patternName.matcher(name);
                     if(!nameMatch.matches()){
                         System.out.println("\nInvalid name please separate the first and last names with a space (ex:firstName lastName)\n");
@@ -70,7 +70,7 @@ public class Main {
 
                     //address input
                     System.out.print("Enter the contact's address: ");
-                    scanConsumer = scanner.nextLine();
+                    scanner.nextLine();
                     String address = scanner.nextLine();
 
                     //birthday input
@@ -80,13 +80,15 @@ public class Main {
                     Matcher birthdayMatch = patternBirthday.matcher(birthday);
                     if(!birthdayMatch.matches()){
                         System.out.println("\nInvalid birthday please use the format: DD/MM/YYYY.\n");
+                        break;
                     }
 
 
 
                     //notes input
                     System.out.print("Enter any notes contact: ");
-                    String note = scanner.next();
+                    scanner.nextLine();
+                    String note = scanner.nextLine();
 
                     // Creating Contact
                     Contact newContact = new Contact(name, phoneNumber, email, address, birthday, note);
@@ -107,7 +109,7 @@ public class Main {
                     switch (option){
                         case "1" -> {
                             System.out.print("Enter the contact's name: ");
-                            String scanConsumer = scanner.nextLine();
+                            scanner.nextLine();
                             String name = scanner.nextLine();
                             phonebook.search("name", name);
                         }
@@ -125,7 +127,6 @@ public class Main {
                         }
                         case "4" -> {
                             System.out.println("Enter the contact's Address: ");
-                            String scanConsumer = scanner.nextLine();
                             String address = scanner.next();
                             System.out.println();
                             phonebook.search("address", address);
