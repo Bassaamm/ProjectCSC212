@@ -66,7 +66,7 @@ public class Contact implements Comparable<Contact>{
         this.notes = notes;
     }
 
-    // The Big O of compareTo function is O(n)
+    // The Big O of compareTo function is O(1)
     public int compareTo(Contact contact) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.name.compareTo(contact.name);
@@ -74,7 +74,7 @@ public class Contact implements Comparable<Contact>{
     //-------------------------printAllEvent Function description----------------------------
     // This function will print all events and its information by calling printEventData method
     //--------------------------------Big o--------------------------------------------------
-    // Its big O(n) because its depends on the (n) number of event that will add.
+    // Its big O(n) because its will loop over all the events and perform an O(1) function on the (n) number of event that will add.
     public void printAllEventContact() {
         if (event.empty()) {
             System.out.println("The event is empty");

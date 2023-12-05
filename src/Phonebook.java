@@ -44,7 +44,7 @@ public class Phonebook{
     // ----------------------------Big O----------------------------------
     // We have a nested loop
     //
-    // Then we can say that search function is a O(n)
+    // Then we can say that search function is a O(n^2)
     public void searchFirstName(String value) {
         int counter = 0;
         boolean passedLast = true;

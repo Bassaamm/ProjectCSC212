@@ -53,7 +53,7 @@ public class Event implements Comparable<Event>{
 
     }
 
-    // The Big O of compareTo function is O(n)
+    // The Big O of compareTo function is O(1)
     public int compareTo(Event event) {
         //x.compareto(y), = 0 (equal), <0 (x before), >0 (y before)
         return this.title.compareTo(event.title);
