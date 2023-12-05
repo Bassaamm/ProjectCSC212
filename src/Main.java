@@ -226,16 +226,7 @@ public class Main {
                 }
 
                 case "7" -> {
-                    Contact c1 = new Contact("fahad f", "052", "a", "b", "c", "d");
-                    Contact c2 = new Contact("ahmad a", "056", "a", "b", "c", "d");
-                    Contact c3 = new Contact("khalid ka", "054", "a", "b", "c", "d");
-                    Contact c4 = new Contact("abdullah ab", "053", "a", "b", "c", "d");
-                    phonebook.sortedAdd(c1);
-                    phonebook.sortedAdd(c2);
-                    phonebook.sortedAdd(c3);
-                    phonebook.sortedAdd(c4);
                     phonebook.printAllEventPhoneBook();
-
                 }
                 case "8" -> mainMenu = false;
                 default -> System.out.println("Please enter a valid input\n");
